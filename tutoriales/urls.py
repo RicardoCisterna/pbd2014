@@ -14,13 +14,9 @@ urlpatterns = patterns('',
     url(r'^login/$', 'tuloarmas.views.login_view'),
     url(r'^logout/$', 'tuloarmas.views.logout_view'),
     url('^home/$','tuloarmas.views.index'),
-<<<<<<< HEAD
     url(r'^registro/$', 'tuloarmas.views.registro'),
     url(r'^contacto/$', 'tuloarmas.views.contacto'),
-=======
-    url('^menu/$','tuloarmas.views.menu'),
-
->>>>>>> 6e191d3c69376a5cd30b46d5a0f844d2f2f561e4
+    url(r'^ingreso_material/$', 'tuloarmas.views.ingreso_material'),
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
