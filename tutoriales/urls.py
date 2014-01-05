@@ -10,9 +10,11 @@ urlpatterns = patterns('',
 #    url(r'^$', 'tutoriales.views.index', name='home'),
     #url(r'^proyecto/', include('proyecto.foo.urls')),
     url(r'^productos/$', 'tuloarmas.views.productos'),
+    url(r'^tutoriales/$', 'tuloarmas.views.tutoriales'),
     url(r'^login/$', 'tuloarmas.views.login_view'),
     url(r'^logout/$', 'tuloarmas.views.logout_view'),
     url('^home/$','tuloarmas.views.index'),
+    url('^menu/$','tuloarmas.views.menu'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

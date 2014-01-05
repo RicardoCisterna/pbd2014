@@ -132,20 +132,56 @@
       </div>
       <div class="span9">
       		<div class="well span-nav">
-        		{% if productos %}
-            	{% for producto in productos %}
-            	
-          			<div class="span4">
-              			<h2>{{producto.nombre}}</h2>
-              			<img src="http://placehold.it/320x150" alt="">
-              			<p>{{producto.descripcion}}</p>
-              			<p>${{producto.precio}}</p>
-              			<p><a class="btn" href={{producto.id}}>Ver detalles &raquo;</a></p>
-            		</div><!--/span-->
-            	{% endfor %}
-        		{% else %}
-            	<h3>Lo sentimos, no se han encontrado productos</h3>
-        		{% endif %}
+        		<h1>Datos de usuario</h1>
+        		<form action="./user" method="get" >
+        			<h4>Actualice sus datos</h4>
+					<p>Usuario  : <input name="usuario" type="text" /></p>
+        			<!--<p>Nombre   : <input name="nombre" type="text" /></p>
+        			<p>Apellido : <input name="apellido" type="text" /></p>
+        			<p>Correo   : <input name="correo" type="text" /></p>
+        			<p>Dirección: <input name="direccion" type="text" /></p>
+        			<p>Teléfono : <input name="telefono" type="text" /></p>
+        			<p>Celular  : <input name="celular" type="text" /></p>-->
+        			<p>Contrase&ntilde;a: <input name="passw" type="password" /></p>
+        			<input name="recordar" type="checkbox" value="recordar" />Recibir cotizaciones al correo
+        			<input type="submit" value="Enviar" />
+    			</form>
+<form  action="" method="POST">
+			{%csrf_token%}
+				<div id="tabla">
+					<table size="15">
+						
+						<tr>
+							<th scope="col" width=100>seleccion</th>
+							<th scope="col" width=200>Codigo Area</th>
+							<th scope="col" width=200>Direccion Bodega</th>
+							<th scope="col" width=200>Pasillo</th>
+							<th scope="col" width=200>Estante</th>
+							<th scope="col" width=200>Gaveta</th>
+						</tr>
+						
+						
+						{% if areas%}
+						
+							{% for elemento in areas %}
+								<tr class="aa" bgcolor="silver">
+									<td width=100> <input type="radio" name="lala" value="{{elemento.id}}"> </td>
+									<td width=100>{{elemento.id}}</td>
+									<td width=100>{{elemento.cod_bodega.direccion}}</td>
+									<td width=100>{{elemento.pasillo}}</td>
+									<td width=100>{{elemento.estante}}</td>
+									<td width=100>{{elemento.gaveta}}</td>
+								
+								</tr>
+							{% endfor %}
+						{% endif %}
+
+						
+					</table>
+					
+				</div>
+				<input id="eliminar" type="submit" value="Actualizar" name="chupeta">
+			</form>
           </div>
 		</div>
 		<hr>
@@ -154,21 +190,6 @@
 	<footer>
    	<p>&copy; PBD-2013 Javier,Ricardo,MarcelaPaz</p>
    </footer>
-   <!-- Le javascript
-   ================================================== -->
-   <!-- Placed at the end of the document so the pages load faster -->
-   <script src="../assets/js/jquery.js"></script>
-   <script src="../assets/js/bootstrap-transition.js"></script>
-   <script src="../assets/js/bootstrap-alert.js"></script>
-   <script src="../assets/js/bootstrap-modal.js"></script>
-   <script src="../assets/js/bootstrap-dropdown.js"></script>
-   <script src="../assets/js/bootstrap-scrollspy.js"></script>
-   <script src="../assets/js/bootstrap-tab.js"></script>
-   <script src="../assets/js/bootstrap-tooltip.js"></script>
-   <script src="../assets/js/bootstrap-popover.js"></script>
-   <script src="../assets/js/bootstrap-button.js"></script>
-   <script src="../assets/js/bootstrap-collapse.js"></script>
-   <script src="../assets/js/bootstrap-carousel.js"></script>
-   <script src="../assets/js/bootstrap-typeahead.js"></script>
+
 </body>
 </html> 

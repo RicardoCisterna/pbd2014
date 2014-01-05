@@ -71,8 +71,7 @@
     					<a href="/logout/">Cerrar Sesión</a>
     				</p>
     				<p class="navbar-text pull-right">
-    		 			<a href="/menu/">Usuario {{user.username}}</a> 
-    		 			--
+    		 			Usuario {{user.username}} - 
     				</p>
     	  			{%else%}
     	  			<p class="navbar-text pull-right">
@@ -117,7 +116,7 @@
 
             					</ul> 
          					</li> 
-								<li class="dropdown"><a class="dropdown-toggle" href="/tutoriales">Tutoriales</a> 
+								<li class="dropdown"><a class="dropdown-toggle" href="tutoriales">Tutoriales</a> 
             					<ul class="dropdown-menu submenu"> 
               						<li><a  href="#menu2.1">Menu 2.1</a></li> 
               						<li><a  href="#menu2.2">Menu 2.2</a></li> 
@@ -140,7 +139,7 @@
               			<img src="http://placehold.it/320x150" alt="">
               			<p>{{producto.descripcion}}</p>
               			<p>${{producto.precio}}</p>
-              			<p><a class="btn" href={{producto.id}}>Ver detalles &raquo;</a></p>
+              			<p><a class="btn" href="#">Ver detalles &raquo;</a></p>
             		</div><!--/span-->
             	{% endfor %}
         		{% else %}

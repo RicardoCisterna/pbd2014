@@ -23,8 +23,7 @@ def hola(request):
 def home(request):
 	return HttpResponse("index")
 def index(request):
-	if not request.user.is_anonymous():
-		return HttpResponseRedirect('/productos/')
+	
 	login_form = LoginForm()
 	return render_to_response(
 		'index.html',
@@ -38,8 +37,7 @@ def login_view(request):
     """
     Vista encargada autenticar un usuario para ingresar al sistema
     """
-    if not request.user.is_anonymous():
-    	return HttpResponseRedirect('/')
+    
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -52,13 +50,20 @@ def login_view(request):
             else:
                 # Mensaje warning
                 messages.warning(request, 'Tu cuenta ha sido desactivada.')
-                return HttpResponseRedirect('/login.html')
+                return HttpResponseRedirect('/login')
         else:
             # Mensaje de error
             messages.error(request, 'Nombre de usuario o contraseña errónea.')
-            return HttpResponseRedirect('/login.html')
+            return HttpResponseRedirect('/login')
     else:
-        return HttpResponseRedirect('/')
+        return render_to_response(
+		'login.html',
+		{
+			'login_form': LoginForm,
+			'user': request.user
+		},
+		context_instance=RequestContext(request)
+	)
 
 #@login_required(login_url='/')
 def logout_view(request):
@@ -73,6 +78,16 @@ def productos(request):
     productos = Producto.objects.all()
     return render_to_response(
         'productos.html',
+        {
+            'productos':productos,
+            'user':request.user
+        },
+        context_instance=RequestContext(request)
+    )
+def tutoriales(request):
+    productos = Producto.objects.all()
+    return render_to_response(
+        'tutoriales.html',
         {
             'productos':productos,
             'user':request.user
@@ -97,6 +112,22 @@ def detalle(request, producto_id):
     )
 
 #@login_required(login_url='/')
+
+def menu(request):
+    if request.user.is_anonymous():
+    	return HttpResponseRedirect('/login')
+    else:
+        return render_to_response(
+		'menu.html',
+		{
+			'login_form': LoginForm,
+			'user': request.user
+		},
+		context_instance=RequestContext(request)
+	)
+
+
+
 def nuevo_comentario(request, producto_id):
     # acceso mediante post
     if not request.method == 'POST':

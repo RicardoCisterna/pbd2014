@@ -1,7 +1,105 @@
-{% extends 'base.html' %}
-{% block MENU2 %}{% endblock %}
-{% block MENU3 %}{% endblock %}
-{% block TITLE %}Tu Lo Armas{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Tutoriales</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tutoriales de todo">
+    <meta name="author" content="Javier,Ricardo,MarcelaPaz">
+
+    <!-- Le styles -->
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
+    <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+      
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="{% url home %}">TuLoArmas</a>
+          <div class="nav-collapse collapse">
+          
+          {% if user.is_authenticated %}
+    		<p class="navbar-text pull-right">
+    		<a href="/logout/">Cerrar Sesión</a>
+    		</p>
+    		<p class="navbar-text pull-right">
+    		 Usuario {{user.username}} - 
+    		</p>
+    	  {%else%}
+    	  	<p class="navbar-text pull-right">
+    		<a href="/login/">Iniciar Sesión</a>
+    		</p>
+    	  {%endif%}
+            <ul class="nav">
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/faq">FAQ</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/ayuda">Ayuda</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" role="search">
+        	<div class="form-group">
+          	    <input type="text" class="form-control" placeholder="Buscar">
+        	    <button type="submit" class="btn btn-default">Enviar</button></div>
+          </form>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+            <a class="text-center" href="/"><img src="/static/images/css/TuLoArmasLogo.jpg"></a>
+              <li class="nav-header">Navegación</li>
+              <li class="active"><a href="/productos">Productos</a></li>
+              <li><a href="/tutoriales">Tutoriales</a></li>
+              
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+          <div class="hero-unit">
 {% block CONTENT %}
     <div id="login">
         <form action="/login/" method="post">
@@ -10,7 +108,36 @@
                 {% csrf_token %}
                 {{field}}
             {% endfor %}
-            <input type="submit" value="Login" name="submit" />
+            <button style="width:70px" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>
     </div><!-- #login -->
 {% endblock %}
+</div>
+<hr>
+
+      <footer>
+        <p>&copy; PBD-2013 Javier,Ricardo,MarcelaPaz</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap-transition.js"></script>
+    <script src="../assets/js/bootstrap-alert.js"></script>
+    <script src="../assets/js/bootstrap-modal.js"></script>
+    <script src="../assets/js/bootstrap-dropdown.js"></script>
+    <script src="../assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets/js/bootstrap-tab.js"></script>
+    <script src="../assets/js/bootstrap-tooltip.js"></script>
+    <script src="../assets/js/bootstrap-popover.js"></script>
+    <script src="../assets/js/bootstrap-button.js"></script>
+    <script src="../assets/js/bootstrap-collapse.js"></script>
+    <script src="../assets/js/bootstrap-carousel.js"></script>
+    <script src="../assets/js/bootstrap-typeahead.js"></script>
+
+  </body>
+</html>
+
