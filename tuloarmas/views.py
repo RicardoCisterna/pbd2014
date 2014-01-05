@@ -102,6 +102,38 @@ def productos(request):
         },
         context_instance=RequestContext(request)
     )
+    
+def registro(request):
+    return render_to_response(
+        'registro.html',
+        {
+            
+            'user':request.user
+        },
+        context_instance=RequestContext(request)
+    )
+
+
+def contacto(request):
+    return render_to_response(
+        'contacto.html',
+        {
+            
+            'user':request.user
+        },
+        context_instance=RequestContext(request)
+    )
+
+def ingreso_material(request):
+    return render_to_response(
+        'ingreso_material.html',
+        {
+            
+            'user':request.user
+        },
+        context_instance=RequestContext(request)
+    )
+    
 def tutoriales(request):
     productos = Producto.objects.all()
     return render_to_response(
@@ -130,7 +162,6 @@ def detalle(request, producto_id):
     )
 
 #@login_required(login_url='/')
-
 def menu(request):
     if request.user.is_anonymous():
     	return HttpResponseRedirect('/login')
