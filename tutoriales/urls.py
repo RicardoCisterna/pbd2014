@@ -15,6 +15,8 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'tuloarmas.views.logout_view'),
     url('^home/$','tuloarmas.views.index'),
     url('^menu/$','tuloarmas.views.menu'),
+    url('^about/$','tuloarmas.views.about'),
+    url('^faq/$','tuloarmas.views.FAQ'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

@@ -71,8 +71,7 @@
     					<a href="/logout/">Cerrar Sesión</a>
     				</p>
     				<p class="navbar-text pull-right">
-    		 			<a href="/menu/">Usuario {{user.username}}</a> 
-    		 			--
+    		 			Usuario {{user.username}} - 
     				</p>
     	  			{%else%}
     	  			<p class="navbar-text pull-right">
@@ -132,13 +131,20 @@
       </div>
       <div class="span9">
       		<div class="well span-nav">
-        		{{user.username}}
-        		
-        		
-        		
-        		
-        		
-        		
+        		{% if productos %}
+            	{% for producto in productos %}
+            	
+          			<div class="span4">
+              			<h2>{{producto.nombre}}</h2>
+              			<img src="http://placehold.it/320x150" alt="">
+              			<p>{{producto.descripcion}}</p>
+              			<p>${{producto.precio}}</p>
+              			<p><a class="btn" href="#">Ver detalles &raquo;</a></p>
+            		</div><!--/span-->
+            	{% endfor %}
+        		{% else %}
+            	<h3>Lo sentimos, no se han encontrado productos</h3>
+        		{% endif %}
           </div>
 		</div>
 		<hr>
