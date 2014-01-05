@@ -1,136 +1,217 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Tutoriales</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tutoriales de todo">
+    <meta name="author" content="jaco" >
 
-<!--[if lt IE 7]> <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es" class="no-js"> <!--<![endif]-->
+    <!-- Le styles -->
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
 
-<head>
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    a.menu:after, .dropdown-toggle:after { 
+        content: none; 
+      } 
 
-<title>{% block TITLE %}{% endblock %}</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    ul.nav li.dropdown:hover { 
+      font-weight: bold; 
+     
 
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta name="description" content="Description" />
-<meta name="keywords" content="" />
-<meta name="robots" content="all" />
-<meta name="author" content="Jacocampos"/>
+      
+} 
+  ul.nav li.dropdown:hover ul.dropdown-menu.submenu{ 
+    display: block; 
+    margin-left: 220px; 
+     
+    margin-top: -36px; 
+                 
+                background-color:#FFF; 
+                font-weight: normal; 
+                 
+  } 
 
-<!-- css
-<link rel="stylesheet" href="{{STATIC_URL}}style.css" type="text/css" media="all" />
- /css-->
-<!-- bootstrap-->
-<link rel="stylesheet" href=/static/bootstrap/css/bootstrap.css>
-<link rel="stylesheet" href=/static/bootstrap/css/bootstrap-responsive.css>
-<script src=static/js/jquery.js></script>
-<script src=static/bootstrap/js/bootstrap.js></script>
+    </style> 
+    <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
-</head>
-<body>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+  </head>
+
+  <body>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
-    	<div class="navbar-inner">
-    	<a class="brand" href="{% url home %}"> PBD-tutoriales</a>
-    	{% if user.is_authenticated %}
-    		<p class="navbar-text pull-right"></p>
-    		Usuario {{user.username}}
-    	{% endif %}
-    	</div>
-    </div><!--/navbar-->
+      <div class="navbar-inner">
+      
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="{% url home %}">TuLoArmas</a>
+          <div class="nav-collapse collapse">
+          
+          {% if user.is_authenticated %}
+    		<p class="navbar-text pull-right">
+    		<a href="/logout/">Cerrar Sesión</a>
+    		</p>
+    		<p class="navbar-text pull-right">
+    		 Usuario {{user.username}} - 
+    		</p>
+    	  {%else%}
+    	  	<p class="navbar-text pull-right">
+    		<a href="/login/">Iniciar Sesión</a>
+    		</p>
+    	  {%endif%}
+            <ul class="nav">
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/faq">FAQ</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/ayuda">Ayuda</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" role="search">
+        	<div class="form-group">
+          	    <input type="text" class="form-control" placeholder="Buscar">
+        	    <button type="submit" class="btn btn-default">Enviar</button></div>
+          </form>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
 
-    <div id = "warning">
-        
-        <!--[if IE 6]>
-        <p>
-            La versión de Internet Explorer que est&aacute;s utilizando
-            no está actualizada. <br />
-            Este sitio funcionar&aacute; mejor si actualizas tu navegador.
-            <a href="http://www.microsoft.com/latam/windows/internet-explorer/">Actualizar Internet Explorer</a>
-        </p>
-        <![endif]-->
-        <script src="http://code.jquery.com/jquery.js"></script>
-        <noscript>
-            <p>
-                Es necesario que tengas activado Javascript en su navegador 
-                para utilizar todas las funciones de este sitio.
-                <a href="#">
-                    &iquest;C&oacute;mo activar Javascript?
-                </a>
-            </p>
-        </noscript>
-    </div><!-- #warning -->
-    
-    <div id="page">
-        <div id="header">
-            <h1>Tutoriales</h1>
-            {% block Panel %}
-            <div class="container-fluid">
-      <div class="row-fluid">
+    <div class="container-fluid"> 
+	<div class="row-fluid">
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li class="active"><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-            {% endblock %}
-            {% block MENU %}
-    		<ul id="menu">
-        		<li><a href="/Home/">Home |</a></li>
-        		<li><a href="/About/">About |</a></li>
-        		<li><a href="/FAQ/">FAQ |</a></li>
-        		<li><a href="/Contacto/">Contacto |</a></li>
-    		</ul> 
-            
-            
-            {% endblock %}
-            
-            {% block MENU2 %}
-            	<ul id="menu2">
-            		<li><a href="/logout/">Cerrar Sesión</a></li>
-            	</ul>
-            {% endblock %}
-            {% block MENU3 %}
-            	<ul id="menu3">
-            		<li><a href="/login/">Iniciar Sesión</a></li>
-            	</ul>
-            {% endblock %}
-            <!-- 
-            <ul id="menu">
-                <li><span>Bienvenido</span></li>
-                <li><a href="#">Productos</a></li>
-                <li><a href="#">Cerrar Sesión</a></li>
-            </ul> 
-            -->
-        </div><!-- #header -->
+            <a class="text-center" href="/"><img src="/static/images/css/TuLoArmasLogo.jpg"></a>
+      <div id="zona-navegacion"> 
+        <ul id="menuLateraer-fluid"> 
+	<div class="row-fluid">
+        <div class="span3l" class="nav nav-tabs nav-stacked"> 
         
-        <div id="breadcrumb">
-            {% block BREADCRUMB %}{% endblock %}
-        </div><!-- #breadcumb -->
-        
-        <div id="content">
-            {% block CONTENT %}{% endblock %}
-        </div><!-- #content -->
-        
-        <div id="footer">
-            <p>Proyecto Base de datos 2-2013, Marcela Paz Santana-Ricardo Cisterna-Javier Campos</p>
-        </div><!-- #footer -->
-    </div><!-- #page -->
+          <li class="dropdown"><a class="dropdown-toggle" href="/productos">Productos</a> 
+            <ul class="dropdown-menu submenu"> 
+              <li><a  href="#menu1.1">Menu 1.1</a></li> 
+              <li><a  href="#menu1.2">Menu 1.2</a></li> 
+              <li><a  href="#menu1.3">Menu 1.3</a></li> 
+              <li><a  href="#menu1.4">Menu 1.4</a></li> 
+              <li><a  href="#menu1.5">Menu 1.5</a></li> 
 
-</body>
+            </ul> 
+          </li> 
+
+          <li class="dropdown"><a class="dropdown-toggle" href="tutoriales">Tutoriales</a> 
+            <ul class="dropdown-menu submenu"> 
+              <li><a  href="#menu2.1">Menu 2.1</a></li> 
+              <li><a  href="#menu2.2">Menu 2.2</a></li> 
+              <li><a  href="#menu2.3">Menu 2.3</a></li> 
+              <li><a  href="#menu2.4">Menu 2.4</a></li> 
+              <li><a  href="#menu2.5">Menu 2.5</a></li> 
+
+            </ul> 
+          </li> 
+        </ul> 
+      </div> </div></div>
+        <div class="span9">
+          <div class="hero-unit">
+          {% block centro-sup %}
+            <h1>Tutoriales!</h1>
+            <p>En esta web encontrarás una infinidad de tutoriales con los cuales podrás armar y desarmas casi cualquier cosa, además se facilita el contacto con proveedores de las piezas que tu necesites para tus proyectos. Visita nuestras categorías y sigue los tutoriales!</p>
+            <p>Si no estás registrado presiona aquí
+            <p><a href="/registro" class="btn btn-primary btn-large">Registrate &raquo;</a></p>
+            {% endblock %}
+          </div>
+          {% block destacados %}
+          <div class="row-fluid">
+            <div class="span4">
+              <h2>Producto destacado 1</h2>
+              <p>Bicicleta oxford 2014 </p>
+              <p><a class="btn" href="#">Ver detalles &raquo;</a></p>
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Producto destacado 2</h2>
+              <p>Bicicleta de montaña personal </p>
+              <p><a class="btn" href="#">Ver detalles &raquo;</a></p>
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Producto destacado 3</h2>
+              <p>Otros productos </p>
+              <p><a class="btn" href="#">Ver detalles &raquo;</a></p>
+            </div><!--/span-->
+          </div><!--/row-->
+          <div class="row-fluid">
+            <div class="span4">
+              <h2>Producto destacado 4</h2>
+              <p>Otro producto más </p>
+              <p><a class="btn" href="#">Ver detalles &raquo;</a></p>
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Producto destacado 5</h2>
+              <p>Más productos destacados </p>
+              <p><a class="btn" href="#">Ver detalles &raquo;</a></p>
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Producto destacado 6</h2>
+              <p>Ultimo producto destacado </p>
+              <p><a class="btn" href="#">Ver detalles &raquo;</a></p>
+            </div><!--/span-->
+          </div><!--/row-->
+        </div><!--/span-->
+      </div><!--/row-->
+	{% endblock %}
+      <hr>
+
+      <footer>
+        <p>&copy; PBD-2013 Javier,Ricardo,MarcelaPaz</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap-transition.js"></script>
+    <script src="../assets/js/bootstrap-alert.js"></script>
+    <script src="../assets/js/bootstrap-modal.js"></script>
+    <script src="../assets/js/bootstrap-dropdown.js"></script>
+    <script src="../assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets/js/bootstrap-tab.js"></script>
+    <script src="../assets/js/bootstrap-tooltip.js"></script>
+    <script src="../assets/js/bootstrap-popover.js"></script>
+    <script src="../assets/js/bootstrap-button.js"></script>
+    <script src="../assets/js/bootstrap-collapse.js"></script>
+    <script src="../assets/js/bootstrap-carousel.js"></script>
+    <script src="../assets/js/bootstrap-typeahead.js"></script>
+
+  </body>
 </html>
+

@@ -84,6 +84,7 @@ def productos(request):
         },
         context_instance=RequestContext(request)
     )
+<<<<<<< HEAD
     
 def registro(request):
     return render_to_response(
@@ -106,6 +107,8 @@ def contacto(request):
         context_instance=RequestContext(request)
     )
     
+=======
+>>>>>>> 6e191d3c69376a5cd30b46d5a0f844d2f2f561e4
 def tutoriales(request):
     productos = Producto.objects.all()
     return render_to_response(
@@ -134,6 +137,22 @@ def detalle(request, producto_id):
     )
 
 #@login_required(login_url='/')
+
+def menu(request):
+    if request.user.is_anonymous():
+    	return HttpResponseRedirect('/login')
+    else:
+        return render_to_response(
+		'menu.html',
+		{
+			'login_form': LoginForm,
+			'user': request.user
+		},
+		context_instance=RequestContext(request)
+	)
+
+
+
 def nuevo_comentario(request, producto_id):
     # acceso mediante post
     if not request.method == 'POST':
