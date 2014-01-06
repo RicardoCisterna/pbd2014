@@ -191,12 +191,15 @@
           </div>
           </div>
 
-      <hr> 	
+      	
       <footer>
+      <div class="row-fluid">
+      
+      <hr> 
         <p>&copy; PBD-2013 Javier,Ricardo,MarcelaPaz</p>
       </footer>
-
-    </div><!--/.fluid-container-->
+		</div>
+    <!--/.fluid-container-->
 
 
   </body>

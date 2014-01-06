@@ -8,8 +8,6 @@ from django.contrib.auth.models import User
 #    nombre = models.CharField(max_length=255)
 #    descripcion = models.TextField()
 #    precio = models.IntegerField()
-<<<<<<< HEAD
-
 #    def __unicode__(self):
 #        return u'%s' % (self.nombre)
 

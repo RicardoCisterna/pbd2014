@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+r<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -91,8 +91,8 @@
     	  {%endif%}
             <ul class="nav">
               <li><a href="/">Home</a></li>
-              <li class="active"><a href="/about">About</a></li>
-              <li><a href="/faq">FAQ</a></li>
+              <li><a href="/about">About</a></li>
+              <li class="active"><a href="/faq">FAQ</a></li>
               <li><a href="/contact">Contact</a></li>
               <li><a href="/ayuda">Ayuda</a></li>
             </ul>
@@ -155,7 +155,7 @@
 					</div>           
             </div>
             
-            
+            <div class="well span-nav">
 				<div class="row-fluid">
 					<div class="row-fluid">            
             		<p>Pregunta N°2</p>
@@ -164,10 +164,10 @@
 						<p>Descripcion </p>				
 					</div> 
 					</div>           
-            
+            </div>
 				            
             
-            <p></p>
+            <p>Si requiere mas ayuda favor contactarse con nosotros haciendo click <a href="/about">aqui</a></p>
             {% endblock %}
           </div>
           </div>

@@ -144,6 +144,37 @@ def tutoriales(request):
         },
         context_instance=RequestContext(request)
     )
+    
+def datos(request):
+	if request.method == "POST":
+		form=proveedorform(request.POST)
+		rut_proveedor=form.cleaned_data['rut_proveedor']
+		nombre_proveedor=form.cleaned_data['nombre_proveedor']
+		direc_proveedor=form.cleaned_data['direc_proveedor']
+		fono_proveedor=form.cleaned_data['fono_proveedor']
+		movil_proveedor=form.cleaned_data['movil_proveedor']
+		correo_proveedor=form.cleaned_data['correo_proveedor']
+				
+				
+		p=Proveedor()
+		p.rut_proveedor=rut_proveedor
+		p.nombre_proveedor=nombre_proveedor
+		p.direc_proveedor=direc_proveedor
+		p.fono_proveedor=fono_proveedor
+		p.movil_proveedor=movil_proveedor
+		p.correo_proveedor=correo_proveedor
+		p.save()
+						
+		form = proveedorform()
+		ctx={'form':form}
+		messages.success(request,'Registro exitoso')
+		return render_to_response('menu.html',ctx,context_instance=RequestContext(request))
+
+		else: #GET
+			form = proveedorform()
+			ctx={'form':form}
+		return render_to_response('menu.html',ctx,context_instance=RequestContext(request))
+			
 
 #@login_required(login_url='/')
 def detalle(request, producto_id):

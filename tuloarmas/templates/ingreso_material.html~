@@ -82,7 +82,7 @@
     		<a href="/logout/">Cerrar Sesión</a>
     		</p>
     		<p class="navbar-text pull-right">
-    		 <a href="/menu/">Usuario {{user.username}}</a> - 
+    		 Usuario {{user.username}} - 
     		</p>
     	  {%else%}
     	  	<p class="navbar-text pull-right">

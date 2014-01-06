@@ -82,7 +82,7 @@
     		<a href="/logout/">Cerrar Sesión</a>
     		</p>
     		<p class="navbar-text pull-right">
-    		 <a href="/menu/">Usuario {{user.username}}</a> - 
+    		 Usuario {{user.username}} - 
     		</p>
     	  {%else%}
     	  	<p class="navbar-text pull-right">
@@ -143,138 +143,47 @@
         </ul> 
       </div> </div></div>
 
-      <!--/.Ingreso material -->
 
-  <div class="container-fluid" style="margin-left:300px;">
-    <div class="row-fluid"> 
-      
-        <h4>Ingrese los datos del material que desea ingresar</h4>
-      
 
-      <div class="modal-body">
 
-        <form class="form-horizontal">
 
-          <p><div class="control-group">
-            <label class="control-label" for="inputName">Nombre</label>
-            <div class="controls">
-              <input type="text" class="span6" id="inputName">
-            </div>
+
+<!--/.Contactenos -->
+
+	<div class="container-fluid" style="margin-left:300px;">
+  	<div class="row-fluid">	
+  		
+  			<h3 id="modalLabel">Contáctenos</h3>
+  		
+
+  		<div class="modal-body">
+
+  			<form>
+  				
+  				<div class="controls controls-row">
+  					<input type="text" class="span7" placeholder="Correo">
+  				</div>
+
+  				<div class="controls controls-row">
+  					<input type="text" class="span7" placeholder="Fono">
+  				</div
+          				<div class="controls controls-row">
+            <input type="text" class="span7" placeholder="Asunto">
           </div>
 
-          <div class="control-group">
-            <label class="control-label" for="inputCategoria">Categoría</label>
-            <div class="controls">
-              <input type="text" class="span6" id="inputCategoria">
-            </div>
+          <div class="controls controls-row">
+            <textarea class="span7" rows="7"></textarea>
           </div>
 
-          <div class="control-group">
-            <label class="control-label" for="inputCategoria">Marca</label>
-            <div class="controls">
-              <input type="text" class="span6" id="inputCategoria">
-            </div>
-          </div>
-
-          <div class="control-group">
-            <label class="control-label" for="inputCategoria">Modelo</label>
-            <div class="controls">
-              <input type="text" class="span6" id="inputCategoria">
-            </div>
-          </div>
-
-          <div class="control-group">
-            <label class="control-label" for="inputCategoria">Código</label>
-            <div class="controls">
-              <input type="text" class="span6" id="inputCategoria">
-            </div>
-          </div>
-
-          <div class="control-group">
-            <label class="control-label" for="inputCategoria">Precio</label>
-            <div class="controls">
-              <input type="text" class="span6" id="inputCategoria">
-            </div>
-          </p>
-
-            <p><button class="btn" type="button" style="margin-left:121px;">Agregar Imagen</button></p> 
-
-          <p class="text" style="margin-left:121px;">Tipo de material:
-        
-            <label class="radio" style="margin-left:121px;">
-            <input type="radio" name="inputWalls" id="inputWalls" value="Usuario" checked>
-              Básico</label>
-              <label class="radio" style="margin-left:121px;">
-            <input type="radio" name="inputWalls" id="inputWalls" value="Administrador">
-              Compuesto</label>
-          </p>
-
-            <p>
-            <button type="submit" class="btn" style="margin-left:121px;">Buscar</button>
-            <input type="text" class="input-medium search-query">
-            
-          </p>
-
-          <!--<<p class="text" style="margin-left:121px;">Elija materiales:
-
-          select multiple="multiple" style="margin-left:121px;">
-            {% if productos %}
-              {% for producto in productos %}
-                <option>{{producto.nombre}}</option>
-              {%endfor%}
-            {% else %}
-              <option>Lo sentimos, no se han encontrado productos</option>
-            {% endif %}
-          </select> 
-        </p>  -->
-
-        <table size="15" style="margin-left:121px;">
-          <tr>
-            <th scope="col" width=100>Selección</th>
-            <th scope="col" width=100>Material</th>
-          </tr>
-
-          {% if productos %}
-              {% for producto in productos %}
-              <tr class="aa" bgcolor="silver">
-                <td width=100><input type="checkbox" name="{{producto.id}}" value="{{producto.id}}"></td>
-                <td width=100>{{producto.nombre}}</td>
-              </tr>
-              {%endfor%}
-            {% else %}
-              <option>No hay materiales</option>
-            {% endif %}
-        </table>
-
-          </div>
-
-
-        </form>
-
-
-
-        <div  class="controls controls-row" style="margin-left:121px;">
-          <label class="control-label" for="inputCategoria">Descripción:</label>
-          <div class="controls">
-            <textarea class="span7" rows="6"></textarea>
-          </div>
-        </div>
-
+          <button type="submit" class="btn btn-default">Enviar</button>
+  				
+  			</form>
 
       </div>
-
-
-
-      <div class="form-actions" style="margin-left:121px;">
-          <button type="submit" class="btn btn-primary">Aceptar</button>
-          <button type="button" class="btn">Agregar más productos</button>
-          <button type="button" class="btn">Cancelar</button>
-        </div>
-
-
+  		
     </div>
 
-    
-  
-  </body>
+		
+	
+	</body>
 </html>
