@@ -8,7 +8,6 @@ from django.contrib.auth.models import User
 #    nombre = models.CharField(max_length=255)
 #    descripcion = models.TextField()
 #    precio = models.IntegerField()
-
 #    def __unicode__(self):
 #        return u'%s' % (self.nombre)
 
@@ -35,7 +34,7 @@ class Auditoria(models.Model):
 
 class Usuario (models.Model):
     id = models.AutoField('ID', primary_key=True) 
-    tipo_usuario = models.CharField(max_length=1)
+    tipo_usuario = models.CharField(max_length=20)
     nombre_usuario= models.CharField(max_length=100)
     apellido_usuario = models.CharField(max_length=100)
     correo_usuario =  models.EmailField()
@@ -46,12 +45,32 @@ class Usuario (models.Model):
     estado_usuario= models.CharField(max_length=20)
     fecha_ingreso = models.DateField()
 
+class Producto(models.Model):
+    id = models.AutoField('ID', primary_key=True)
+    nombre = models.CharField(max_length=255)
+    descripcion = models.TextField()
+    precio = models.IntegerField()
+
+#    def __unicode__(self):
+#        return u'%s' % (self.nombre)
+
 class Categoria(models.Model): 
     id = models.AutoField('ID', primary_key=True)
     nombre_categoria=models.CharField(max_length=255)
     #llaves foraneas
-    raiz = models.ForeignKey('self',on_delete=models.PROTECT)
+    raiz = models.ForeignKey('Categoria',null=True,blank=True)
 
+#class Comentario(models.Model):
+#    id = models.AutoField('ID', primary_key=True)
+#    creado = models.DateTimeField(auto_now_add=True)
+#    texto = models.TextField()
+
+    # Llaves foráneas
+#    Usuario = models.ForeignKey(Usuario)
+#    producto = models.ForeignKey(Producto)
+    
+#    def __unicode__(self):
+#        return u'%s' % (self.nombre)
 class Material(models.Model):
     id = models.AutoField('ID', primary_key=True) 
     nombre_material= models.CharField(max_length=255)
@@ -59,7 +78,7 @@ class Material(models.Model):
     tipo_material = models.CharField(max_length=1)
     marca=  models.CharField(max_length=255)
     modelo= models.CharField(max_length=255)
-    imagen_material =  models.ImageField(upload_to='/tmp')
+    imagen_material =  models.CharField(max_length=255)
     #llaves foreaneas
     categoria = models.ForeignKey(Categoria,on_delete=models.PROTECT)
 
@@ -68,7 +87,6 @@ class Cotizacion(models.Model):
     fecha_cotizacion=models.DateField(auto_now_add=True)    
     #llaves foraneas    
     usuario = models.ForeignKey(Usuario,on_delete=models.PROTECT)
-    
     
 class Proveedor_material (models.Model):
     id  = models.AutoField('ID', primary_key=True) 
@@ -108,7 +126,7 @@ class Tutorial(models.Model):
     video = models.URLField()
     nombre_tutorial = models.CharField(max_length=255)
     descripcion_tutorial =  models.TextField()
-    imagen_tutorial = models.ImageField(upload_to='/tmp')
+    imagen_tutorial = models.CharField(max_length=255)
     #llaves foraneas
     Usuario = models.ForeignKey(Usuario ,on_delete=models.PROTECT)
     categoria = models.ForeignKey(Categoria ,on_delete=models.PROTECT)
@@ -118,7 +136,6 @@ class Comentario (models.Model):
     #llaves foraneas
     Usuario = models.ForeignKey(Usuario, unique=True ,on_delete=models.PROTECT)
     tutorial = models.ForeignKey(Tutorial, unique=True ,on_delete=models.PROTECT)
-
 
 class Notificacion (models.Model):
     id =models.AutoField('ID', primary_key=True)
@@ -144,8 +161,8 @@ class Consumo (models.Model):
     proceso = models.ForeignKey(Proceso ,on_delete=models.PROTECT)
     material = models.ForeignKey(Material ,on_delete=models.PROTECT) 
 
-
 class Flujo (models.Model):
+    id= models.AutoField('ID', primary_key=True)
     tiempo_espera = models.IntegerField()
     descripcion_flujo = models.IntegerField()
     #llaves foraneas
@@ -160,7 +177,7 @@ class Herramienta (models.Model):
     id= models.AutoField('ID', primary_key=True)
     nombre_herramienta = models.CharField(max_length=255)
     descripcion_herrmienta =  models.IntegerField()
-    imagen_herrmienta =   models.ImageField(upload_to='/tmp')  
+    imagen_herrmienta =    models.CharField(max_length=255)  
 
 class Uso_herramienta (models.Model):
     id= models.AutoField('ID', primary_key=True)
@@ -168,35 +185,32 @@ class Uso_herramienta (models.Model):
     material = models.ForeignKey(Material ,on_delete=models.PROTECT)
     proceso = models.ForeignKey(Proceso ,on_delete=models.PROTECT)  
 
-
-
-
-
 class Compone_A(models.Model):
-    #id = models.AutoField('ID', primary_key=True) 
-    material = models.ForeignKey(Material,primary_key=True)
-    otro=descripcion_herrmienta =  models.IntegerField()
+    id = models.AutoField('ID', primary_key=True) 
+    material = models.ForeignKey(Material)
+    descripcion_herrmienta =  models.IntegerField()
     nombre_material1= models.CharField(max_length=255)
     descripcion_material = models.TextField()
     tipo_material = models.CharField(max_length=1)
     marca=  models.CharField(max_length=255)
     modelo= models.CharField(max_length=255)
-    imagen_material =  models.ImageField(upload_to='/tmp')
+    imagen_material =models.CharField(max_length=255)
     #llaves foreaneas
 
 class Compuesto_de(models.Model):
-    #id = models.AutoField('ID', primary_key=True) 
-    material = models.OneToOneField(Material,primary_key=True)
+    id = models.AutoField('ID', primary_key=True) 
+    material = models.OneToOneField(Material)
     nombre_material2= models.CharField(max_length=255)
     descripcion_material = models.TextField()
     tipo_material = models.CharField(max_length=1)
     marca=  models.CharField(max_length=255)
     modelo= models.CharField(max_length=255)
-    imagen_material =  models.ImageField(upload_to='/tmp')
+    imagen_material = models.CharField(max_length=255)
     #llaves foreaneas
 
 
 class Composicion (models.Model):
     #llaves foranea
-    compuesto_de = models.ForeignKey(Compuesto_de, primary_key=True ,on_delete=models.PROTECT)
-    compone_a = models.ForeignKey(Compone_A, primary_key=True ,on_delete=models.PROTECT )
+    id = models.AutoField('ID', primary_key=True) 
+    compuesto_de = models.ForeignKey(Compuesto_de)
+    compone_a = models.ForeignKey(Compone_A)
