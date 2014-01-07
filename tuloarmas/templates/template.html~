@@ -9,7 +9,7 @@
 
     <!-- Le styles -->
     <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="/static/style.css" rel="stylesheet">
+    <link href="/static/style.css" rel="stylesheet"><!--esta-->
     
     <style type="text/css">
       body {
@@ -164,14 +164,14 @@
 	<!-- Le javascript
    ================================================== -->
    <!--<script- Placed at the end of the document so the pages load faster -->
-   <script src="/static/js/jquery.js"></script>
-   <script src="/static/js/ambiance.js"></script>
-   <script type="text/javascript" >
+   <script src="/static/js/jquery.js"></script><!--esta-->
+   <script src="/static/js/ambiance.js"></script><!--esta-->
+   <script type="text/javascript" ><!--esto es lo que pasa a mayusculas los inputs-->
 		$("input.mayuscula").on("keyup",function(){
 		    $(this).val($(this).val().toUpperCase());    
       });
    </script>
-   <script type="text/javascript">
+   <script type="text/javascript"><!--esto-->
         {% if messages %}
             $(document).ready(function(){
                 {% for message in messages %}
@@ -189,6 +189,9 @@
             });
             
         {% endif %}
+    </script>
+    <script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"> 
+			$(":file").filestyle({classInput: "input-small"});
     </script>
    {% block SCRIPT %}
    {% endblock %}

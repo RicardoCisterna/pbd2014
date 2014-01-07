@@ -202,6 +202,17 @@ def datos(request):
 def vista(request):
     return render_to_response("about2.html",{},context_instance=RequestContext(request))
 
+def cotizaciones(request):
+    cotizacion = Cotizacion.objects.all()
+    if len(cotizacion) > 0:
+        ctx={
+            'cotizacion': cotizacion,
+        }
+        return render_to_response('cotizaciones.html', ctx, context_instance=RequestContext(request))
+    else:
+        messages.error(request, "No hay productos")
+        return HttpResponseRedirect('/')
+
 def crear_tutorial(request):
     productos = Producto.objects.all()
     if len(productos) > 0:

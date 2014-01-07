@@ -1,0 +1,104 @@
+{% extends 'template.html' %}
+{% block TITLE %}TuLoArmas - Crear tutorial{% endblock %}
+{% block contenido %}
+<div class="hero-unit">
+         
+    <h1>Cotizaciones</h1>
+    <div class="contenido">
+    				<form method="post" action="{% url guardar_proceso %}">
+    					{% csrf_token %}
+        				<div class="row" style="height:650px;overflow:hidden;">
+            				<div class="span4">
+                				<div>
+                    <label class="cuadrilla-left">Cotizaciones</label>
+                    
+                    <select style="height:400px" id="lista-cotizaciones" multiple="multiple">
+                    {% for cotizaciones in cotizacion %}
+                        <option value="{{cotizaciones.id}}-0" id="cotizaciones-{{cotizaciones.id}}">{{cotizaciones.fecha_cotizacion}}</option>
+                    {% endfor %}
+                    </select>
+                    <input type="submit" name="visualizar" />
+                    <!--<span>Para selección múltiple mantenga presionada la tecla 'Control'</span>-->
+                </div><!-- #lista-empleados -->
+					
+        </div><!-- .row -->
+    </form>
+
+    <div class="spacer20"></div>
+    </div><!-- .content -->
+				            
+            
+            <p>Sistema web implementado para el curso Proyecto de Base de Datos</p>
+            
+</div>
+{% endblock %}
+{% block SCRIPT %}
+
+
+<script type="text/javascript" >
+$(document).ready(function() {
+		$('#mover-btn').on('click', function() {
+        var lista_materiales = $('#lista-materiales').val();
+        
+        for (var i = 0; i < lista_materiales.length; i++) {
+            var id = lista_materiales[i].split('-')[0];
+            
+            $('#producto-' + id).appendTo('#lista').append('<p> - cant <span>0</span></p>');
+        }
+    });
+    
+    $('#retornar-btn').on('click', function() {
+        var lista = $('#lista').val();
+        for (var i = 0; i < lista.length; i++) {
+            var id = lista[i].split('-')[0];
+            
+            $('#producto-' + id).appendTo('#lista-materiales').find('p').remove();
+        }
+    });
+    $('.mas, .menos').on('click', function() {
+        var tipo = undefined;
+        if ($(this).hasClass('menos')) tipo = 'menos';
+        if ($(this).hasClass('mas')) tipo = 'mas';
+        
+        var lista_materiales = $(this).parent().prev().val();
+        for (var i = 0; i < lista_materiales.length; i++) {
+            var id = lista_materiales[i].split('-')[0];
+            
+            var $option = $('#producto-' + id);
+            var $span = $option.find('span');
+            
+            var horas = (tipo == 'mas')? parseFloat($span.html()) + 1 : parseFloat($span.html()) - 1;
+            if (horas < 0) horas = 0;
+            $span.html('' + horas);
+            
+            $option.attr('value', id + '-' + horas);
+            
+            // Se cambia la cantidad de horas asignandolas junto al id
+            
+            $option.prop("selected", false).prop("selected", true);
+        }
+    });
+    /*$("#filtrar-materiales").on("keyup",function(){
+		$("#lista-materiales option").each(function(){
+			if($(this).html().toUpperCase().indexOf($("#filtrar-materiales").val().toUpperCase() )==-1	){
+				$(this).hide();
+				//alert($(this).html()+"->ocultar");
+			}
+			else{
+				$(this).show();			
+				//alert($(this).html()+"->mostrar");
+			}
+		}); 
+    });*/
+    $('input[name=submit]:submit').on('click', function() {
+        $("option").each(function(){
+            this.selected=true;
+        });
+        
+    });
+    
+});
+</script>
+
+{% endblock %}
+      
