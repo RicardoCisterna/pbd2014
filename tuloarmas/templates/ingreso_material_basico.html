@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Tutoriales</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tutoriales de todo">
+    <meta name="author" content="jaco" >
+
+    <!-- Le styles -->
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    a.menu:after, .dropdown-toggle:after { 
+        content: none; 
+      } 
+
+    ul.nav li.dropdown:hover { 
+      font-weight: bold; 
+     
+
+      
+} 
+  ul.nav li.dropdown:hover ul.dropdown-menu.submenu{ 
+    display: block; 
+    margin-left: 220px; 
+     
+    margin-top: -36px; 
+                 
+                background-color:#FFF; 
+                font-weight: normal; 
+                 
+  } 
+
+    </style> 
+    <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+      
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="{% url home %}">TuLoArmas</a>
+          <div class="nav-collapse collapse">
+          
+          {% if user.is_authenticated %}
+        <p class="navbar-text pull-right">
+        <a href="/logout/">Cerrar Sesión</a>
+        </p>
+        <p class="navbar-text pull-right">
+         Usuario {{user.username}} - 
+        </p>
+        {%else%}
+          <p class="navbar-text pull-right">
+        <a href="/login/">Iniciar Sesión</a>
+        </p>
+        {%endif%}
+            <ul class="nav">
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/faq">FAQ</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/ayuda">Ayuda</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+                <input type="text" class="form-control" placeholder="Buscar">
+              <button type="submit" class="btn btn-default">Enviar</button></div>
+          </form>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+
+
+
+<!--/.Menu lateral -->
+<div class="container-fluid"> 
+  <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+            <a class="text-center" href="/"><img src="/static/images/css/TuLoArmasLogo.jpg"></a>
+      <div id="zona-navegacion"> 
+        <ul id="menuLateral" class="nav nav-tabs nav-stacked"> 
+        
+          <li class="dropdown"><a class="dropdown-toggle" href="/productos">Productos</a> 
+            <ul class="dropdown-menu submenu"> 
+              <li><a  href="#menu1.1">Menu 1.1</a></li> 
+              <li><a  href="#menu1.2">Menu 1.2</a></li> 
+              <li><a  href="#menu1.3">Menu 1.3</a></li> 
+              <li><a  href="#menu1.4">Menu 1.4</a></li> 
+              <li><a  href="#menu1.5">Menu 1.5</a></li> 
+
+            </ul> 
+          </li> 
+
+          <li class="dropdown"><a class="dropdown-toggle" href="tutoriales">Tutoriales</a> 
+            <ul class="dropdown-menu submenu"> 
+              <li><a  href="#menu2.1">Menu 2.1</a></li> 
+              <li><a  href="#menu2.2">Menu 2.2</a></li> 
+              <li><a  href="#menu2.3">Menu 2.3</a></li> 
+              <li><a  href="#menu2.4">Menu 2.4</a></li> 
+              <li><a  href="#menu2.5">Menu 2.5</a></li> 
+
+            </ul> 
+          </li> 
+        </ul> 
+      </div> </div></div>
+
+      <!--/.Ingreso material -->
+
+  <div class="container-fluid" style="margin-left:300px;">
+    <div class="row-fluid"> 
+      
+        <h4>Ingrese los datos del material BASICO que desea ingresar</h4>
+        <h6>(**) Si desea  ingresar un material COMPUESTO presione el botón:</h6>
+        <a href="/ingreso_material" class="btn btn-primary">COMPUESTO &raquo;</a>
+        
+      
+
+      <div class="modal-body">
+
+        <form class="form-horizontal">
+
+          <p><div class="control-group">
+            <label class="control-label" for="inputName">Nombre</label>
+            <div class="controls">
+              <input type="text" class="span6" id="inputName">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="inputCategoria">Categoría</label>
+            <div class="controls">
+              <input type="text" class="span6" id="inputCategoria">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="inputCategoria">Marca</label>
+            <div class="controls">
+              <input type="text" class="span6" id="inputCategoria">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="inputCategoria">Modelo</label>
+            <div class="controls">
+              <input type="text" class="span6" id="inputCategoria">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="inputCategoria">Código</label>
+            <div class="controls">
+              <input type="text" class="span6" id="inputCategoria">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="inputCategoria">Precio</label>
+            <div class="controls">
+              <input type="text" class="span6" id="inputCategoria">
+            </div>
+          </p>
+
+            <p><button class="btn" type="button" style="margin-left:121px;">Agregar Imagen</button></p> 
+
+
+          </div>
+
+
+        </form>
+
+
+
+        <div  class="controls controls-row" style="margin-left:121px;">
+          <label class="control-label" for="inputCategoria">Descripción:</label>
+          <div class="controls">
+            <textarea class="span7" rows="6"></textarea>
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+      <div class="form-actions" style="margin-left:121px;">
+          <button type="submit" class="btn btn-primary">Aceptar</button>
+          <button type="button" class="btn">Agregar más productos</button>
+          <button type="button" class="btn">Cancelar</button>
+        </div>
+
+
+    </div>
+
+    
+  
+  </body>
+</html>

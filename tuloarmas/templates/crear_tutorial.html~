@@ -5,13 +5,15 @@
          
     <h1>Crear Tutorial</h1>
     <div class="contenido">
-    				<form method="post" action="{% url guardar_proceso %}">
+    				<form method="POST" action="{% url home %}">
     					{% csrf_token %}
-        				<div class="row" style="height:650px;overflow:hidden;">
-            				<div class="span4">
+        				<div class="row" style="overflow:hidden;">
+            				<div class="span6">
                 				<div>
                     <label class="cuadrilla-left">Nombre Tutorial</label>
                     <input class="mayuscula" type="text" id="mes-tabla" name="mes-tabla">
+                    </form>
+                    <form method="POST" action="{% url guardar_proceso %}">
                     <label>Numero de proceso</label>
                 		<input type="text" name="num-proceso" value="1" />
                 
@@ -24,17 +26,19 @@
                     {% endfor %}
                     </select>
                     <label class="cuadrilla-left">Descripción de armado:</label>
-                    <input type="text" id="mes-tabla" name="descripcion-de-armado">
+                    <div  class="controls controls-row">
+          					<div class="controls">
+            				<textarea class="span10" rows="7"></textarea>
+          					</div>
+        				</div>
                     <label class="cuadrilla-left">HH necesarias</label>
                     <input type="text" name="numeroHH" value="0"/>
                     <br />
                     <hr>
                     <!--<span>Para selección múltiple mantenga presionada la tecla 'Control'</span>-->
                 </div><!-- #lista-empleados -->
-<input type="submit" name="submit" value="Siguiente" class="btn btn-success btn-large" />
-					 <input type="submit" name="submit" value="Anterior" class="btn btn-success btn-large" />
             </div><!-- .span4 -->
-            <div class="span4">
+            <div class="span6">
                 <div class="spacer20"></div><div class="spacer10"></div>
 							<label class="cuadrilla-left">Material resultante</label>
                     <input type="text" id="mes-tabla" name="mes-tabla">
@@ -65,13 +69,14 @@
                 <input type="hidden" name="facturaA" id="facturaA" value ="" />
                 <input type="hidden" name="subarea"  id="subarea"  value ="" />
                 <hr>
-					 <input type="submit" name="submit" value="Terminar" class="btn btn-success btn-large" />
-					 <input type="submit" name="submit" value="Cancelar" class="btn btn-success btn-large" />
+					 <input type="submit" name="submit" value="Siguiente" class="btn btn-primary btn-medium" />
+					 <input type="submit" name="submit" value="Anterior" class="btn btn-medium" />
+					 <input type="submit" name="submit" value="Terminar" class="btn btn-success btn-medium" />
+					 <input type="submit" name="submit" value="Cancelar" class="btn btn btn-medium" />
             </div>
         </div><!-- .row -->
     </form>
 
-    <div class="spacer20"></div>
     </div><!-- .content -->
 				            
             
