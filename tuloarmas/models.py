@@ -2,6 +2,7 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 
 #class Producto(models.Model):
 #    id = models.AutoField('ID', primary_key=True)
@@ -34,7 +35,7 @@ class Auditoria(models.Model):
 
 class Usuario (models.Model):
     id = models.AutoField('ID', primary_key=True) 
-    tipo_usuario = models.CharField(max_length=1)
+    tipo_usuario = models.CharField(max_length=20)
     nombre_usuario= models.CharField(max_length=100)
     apellido_usuario = models.CharField(max_length=100)
     correo_usuario =  models.EmailField()
@@ -64,11 +65,10 @@ class Categoria(models.Model):
 #    id = models.AutoField('ID', primary_key=True)
 #    creado = models.DateTimeField(auto_now_add=True)
 #    texto = models.TextField()
-
     # Llaves foráneas
 #    Usuario = models.ForeignKey(Usuario)
 #    producto = models.ForeignKey(Producto)
-    
+
 #    def __unicode__(self):
 #        return u'%s' % (self.nombre)
 class Material(models.Model):
@@ -126,7 +126,7 @@ class Tutorial(models.Model):
     video = models.URLField()
     nombre_tutorial = models.CharField(max_length=255)
     descripcion_tutorial =  models.TextField()
-    imagen_tutorial = models.ImageField(upload_to='/tmp')
+    imagen_tutorial = models.CharField(max_length=255)
     #llaves foraneas
     Usuario = models.ForeignKey(Usuario ,on_delete=models.PROTECT)
     categoria = models.ForeignKey(Categoria ,on_delete=models.PROTECT)
@@ -162,6 +162,7 @@ class Consumo (models.Model):
     material = models.ForeignKey(Material ,on_delete=models.PROTECT) 
 
 class Flujo (models.Model):
+    id= models.AutoField('ID', primary_key=True)
     tiempo_espera = models.IntegerField()
     descripcion_flujo = models.IntegerField()
     #llaves foraneas
@@ -176,7 +177,7 @@ class Herramienta (models.Model):
     id= models.AutoField('ID', primary_key=True)
     nombre_herramienta = models.CharField(max_length=255)
     descripcion_herrmienta =  models.IntegerField()
-    imagen_herrmienta =   models.ImageField(upload_to='/tmp')  
+    imagen_herrmienta =    models.CharField(max_length=255)  
 
 class Uso_herramienta (models.Model):
     id= models.AutoField('ID', primary_key=True)
@@ -193,7 +194,7 @@ class Compone_A(models.Model):
     tipo_material = models.CharField(max_length=1)
     marca=  models.CharField(max_length=255)
     modelo= models.CharField(max_length=255)
-    imagen_material =  models.ImageField(upload_to='/tmp')
+    imagen_material =models.CharField(max_length=255)
     #llaves foreaneas
 
 class Compuesto_de(models.Model):
@@ -204,7 +205,7 @@ class Compuesto_de(models.Model):
     tipo_material = models.CharField(max_length=1)
     marca=  models.CharField(max_length=255)
     modelo= models.CharField(max_length=255)
-    imagen_material =  models.ImageField(upload_to='/tmp')
+    imagen_material = models.CharField(max_length=255)
     #llaves foreaneas
 
 
@@ -213,3 +214,4 @@ class Composicion (models.Model):
     id = models.AutoField('ID', primary_key=True) 
     compuesto_de = models.ForeignKey(Compuesto_de)
     compone_a = models.ForeignKey(Compone_A)
+
