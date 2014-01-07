@@ -44,7 +44,6 @@ class Categoria(models.Model):
     #llaves foraneas
     raiz = models.ForeignKey('Categoria',null=True,blank=True, on_delete=models.PROTECT)
 
-
 class Material(models.Model):
     id = models.AutoField('ID', primary_key=True) 
     nombre_material= models.CharField(max_length=255)
@@ -61,7 +60,7 @@ class Cotizacion(models.Model):
     fecha_cotizacion=models.DateField(auto_now_add=True)    
     #llaves foraneas    
     usuario = models.ForeignKey(Usuario,on_delete=models.PROTECT)
-    
+
 class Proveedor_material (models.Model):
     id  = models.AutoField('ID', primary_key=True) 
     precio_material = models.IntegerField()
@@ -151,7 +150,7 @@ class proceso_flujo(models.Model):
 class Herramienta (models.Model):
     id= models.AutoField('ID', primary_key=True)
     nombre_herramienta = models.CharField(max_length=255)
-    descripcion_herrmienta =  models.CharField(null=True,blank=True)
+    descripcion_herrmienta = models.TextField(null=True,blank=True)
     imagen_herrmienta =    models.CharField(max_length=255)  
 
 class Uso_herramienta (models.Model):
@@ -166,8 +165,8 @@ class Compone_A(models.Model):
     nombre_material1= models.CharField(max_length=255)
     descripcion_material = models.TextField()
     tipo_material = models.CharField(max_length=1)
-    marca=  models.CharField(max_length=255)
-    modelo= models.CharField(max_length=255)
+    marca=  models.CharField(max_length=255,null=True,blank=True)
+    modelo= models.CharField(max_length=255,null=True,blank=True)
     imagen_material =models.CharField(max_length=255)
     #llaves foreaneas
 
@@ -177,8 +176,8 @@ class Compuesto_de(models.Model):
     nombre_material2= models.CharField(max_length=255)
     descripcion_material = models.TextField()
     tipo_material = models.CharField(max_length=1)
-    marca=  models.CharField(max_length=255,  material = models.ForeignKey(Material))
-    modelo= models.CharField(max_length=255,  material = models.ForeignKey(Material))
+    marca=  models.CharField(max_length=255, null=True,blank=True )
+    modelo= models.CharField(max_length=255, null=True,blank=True )
     imagen_material = models.CharField(max_length=255)
     #llaves foreaneas
 
