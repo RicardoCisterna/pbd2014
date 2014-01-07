@@ -21,6 +21,8 @@ urlpatterns = patterns('',
     url(r'^contact/$', 'tuloarmas.views.contacto'),
     url(r'^ingreso_material/$', 'tuloarmas.views.ingreso_material'),
     url(r'^datos/$', 'tuloarmas.views.datos'),
+    url(r'^crear_tutorial/$', 'tuloarmas.views.crear_tutorial'),
+    url(r'^guardar/proceso/$', 'tuloarmas.views.guardar_proceso_view',name="guardar_proceso"),
     #url(r'^crear_tutorial/$', 'tuloarmas.views.crear_tutorial'),
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

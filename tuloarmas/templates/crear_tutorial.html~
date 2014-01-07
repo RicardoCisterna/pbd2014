@@ -39,7 +39,7 @@
                     <input type="button" class="btn" name="retornar" value="<<" id="retornar-btn" />
                 </div>
                 
-                <select id="lista" name="listado" multiple="multiple">
+                <select id="lista" name="listado-materiales" multiple="multiple">
                 </select>
                 <div class="btn-group cuadrilla-left">
                     <a href="javascript:void(0)" class="btn menos">-</a>
