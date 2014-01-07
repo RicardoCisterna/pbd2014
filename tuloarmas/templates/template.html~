@@ -1,14 +1,16 @@
-<!DOCTYPE html>
+<!DOCTYPE html5>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Tutoriales</title>
+    <title>{% block TITLE %}Tutoriales{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Tutoriales de todo">
     <meta name="author" content="jaco" >
 
     <!-- Le styles -->
     <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/style.css" rel="stylesheet"><!--esta-->
+    
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -91,15 +93,27 @@
     	  {%endif%}
             <ul class="nav">
               <li><a href="/">Home</a></li>
-              <li class="active"><a href="/about">About</a></li>
+              <li><a href="/about">About</a></li>
               <li><a href="/faq">FAQ</a></li>
               <li><a href="/contact">Contact</a></li>
               <li><a href="/ayuda">Ayuda</a></li>
             </ul>
             <form class="navbar-form navbar-left" role="search">
         	<div class="form-group">
-          	    <input type="text" class="form-control" placeholder="Buscar">
-        	    <button type="submit" class="btn btn-default">Enviar</button></div>
+        	<!-- Search Google -->
+
+<form method="GET" action="http://www.google.com/search">
+<input type=hidden name="oe" value="UTF-8">
+<table><tr><td>
+<a href="http://www.google.com/">
+<img src="http://www.tmduc.cl/wp-content/uploads/2013/09/google1.png" width="80px"
+border="0" ALT="Google" align="absmiddle" ></a>
+<input type="text" name="q" size=25 maxlength=255 value="">
+<input type="submit" name="btnG" VALUE="Buscar" size="20px">
+</td></tr></table>
+</form>
+<!-- Search Google -->
+</div>
           </form>
           </div><!--/.nav-collapse -->
         </div>
@@ -138,60 +152,19 @@
 
             </ul> 
           </li> 
+		  </div>
+   </div>
         </ul> 
-      </div> </div></div>
+      </div> 
+          </div>
+        </div>
         <div class="span9">
-          <div class="hero-unit">
-          {% block centro-sup %}
-            <h1>PBD 2-2013</h1>
-            <p>Grupo integrado por:</p>
-            <div class="well span-nav">
-				<div class="row-fluid">
-					<div class="span3">
-            <img src="http://lh6.googleusercontent.com/-N7rhnEW8QsI/AAAAAAAAAAI/AAAAAAAAABQ/Dp1g0BaLpvw/s512-c/photo.jpg" alt="" width=200px></img>
-				</div>				
-				<div class="span6 offset1">
-						<p>Descripcion del cargo</p>				
-				</div>
-				</div>            
-            <div class="span3">             
-            <p>Marcela Paz Santana</p>
-				</div>
-				</div>
-				<div class="well span-nav">
-				<div class="row-fluid">
-					<div class="span3">                 
-            <img src="https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-ash3/1457530_10202307982278197_793900860_n.jpg" alt="" width=200px></img>
-				</div>				
-					<div class="span6 offset1">
-						<p>Descripcion del cargo</p>				
-					</div>
-					</div> 
-            <div class="span3">            
-            <p>Ricardo Cisterna</p>
-				</div>
-				</div>   
-				<div class="well span-nav">
-				<div class="row-fluid">
-					<div class="span3">            
-            		<img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-frc3/262837_4727995436609_348078428_n.jpg" alt="" width=200px></img>
-					</div>				
-					<div class="span6 offset1">
-						<p>Descripcion del cargo</p>				
-					</div> 
-					</div>           
-            <div class="span3">
-            <p>Javier Campos</p>
-            </div>
-				</div>
-				            
-            
-            <p>Sistema web implementado para el curso Proyecto de Base de Datos</p>
-            {% endblock %}
-          </div>
-          </div>
+          {% block contenido %}
+              
+          {% endblock %}
+        </div>
 
-      	
+      </div>
       <footer>
       <div class="row-fluid">
       
@@ -200,8 +173,44 @@
       </footer>
 		</div>
     <!--/.fluid-container-->
-
-
+	<!-- Le javascript
+   ================================================== -->
+   <!--<script- Placed at the end of the document so the pages load faster -->
+   <script src="/static/js/jquery.js"></script><!--esta-->
+   <script src="/static/js/ambiance.js"></script><!--esta-->
+   <script type="text/javascript" ><!--esto es lo que pasa a mayusculas los inputs-->
+		$("input.mayuscula").on("keyup",function(){
+		    $(this).val($(this).val().toUpperCase());    
+      });
+   </script>
+   <script type="text/javascript"><!--esto-->
+        {% if messages %}
+            $(document).ready(function(){
+                {% for message in messages %}
+                    $.ambiance({message: "{{message}}", 
+                        {% ifequal message.tags "info" %}title:"Informacion",{% endifequal %}
+                        {% ifequal message.tags "warning" %}title:"Advertencia",{% endifequal %}
+                        {% ifequal message.tags "error" %}title:"Error",{% endifequal %}
+                        {% ifequal message.tags "success" %}title:"Aviso",{% endifequal %}
+                        
+                        type: "{{message.tags}}",
+                        timeout:6,
+                        width:400,
+                    });
+                {% endfor %}
+            });
+            
+        {% endif %}
+    </script>
+    <script type="text/javascript" src="/static/js/bootstrap-filestyle.min.js"> 
+			$(":file").filestyle({classInput: "input-small"});
+    </script>
+   {% block SCRIPT %}
+   {% endblock %}
   </body>
+  
 </html>
+
+
+
 

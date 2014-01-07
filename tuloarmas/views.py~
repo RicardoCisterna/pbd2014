@@ -144,6 +144,39 @@ def tutoriales(request):
         },
         context_instance=RequestContext(request)
     )
+    
+def datos(request):
+	if request.method == "POST":
+		lala=request.POST.keys()
+		aa=False
+		for clave in lala:
+			if clave=="username":
+				aa=True
+				if clave=="lala":
+					p=User.objects.get(username=request.POST["lala"])
+					ctx={"user":p}
+					return render_to_response('datos.html',ctx,context_instance=RequestContext(request))
+				if aa==True:
+					p=user.objects.get(username=request.POST["username"])
+					p=user.objects.get(password=request.POST["password"])
+					p.save()
+					user=User.objects.all()
+					ctx={'user':user}
+					return render_to_response('datos.html',ctx,context_instance=RequestContext(request))
+					
+				else:
+					user=User.objects.all()
+					ctx={'user':user}
+					return render_to_response('datos.html',ctx,context_instance=RequestContext(request))
+					
+			else:
+				user=User.objects.all()
+				
+				ctx={'user':user}
+				return render_to_response('datos.html',ctx,context_instance=RequestContext(request))
+	else:
+		return HttpResponseRedirect('/datos')
+			
 
 #@login_required(login_url='/')
 def detalle(request, producto_id):
@@ -162,8 +195,6 @@ def detalle(request, producto_id):
     )
 
 #@login_required(login_url='/')
-<<<<<<< HEAD
-
 def menu(request):
     if request.user.is_anonymous():
     	return HttpResponseRedirect('/login')
@@ -177,8 +208,6 @@ def menu(request):
 		context_instance=RequestContext(request)
 	)
 
-=======
->>>>>>> d544aba24563bb5f2d5d3df3d0eefd67cea5d4a1
 def nuevo_comentario(request, producto_id):
     # acceso mediante post
     if not request.method == 'POST':

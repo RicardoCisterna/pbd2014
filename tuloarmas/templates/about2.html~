@@ -1,0 +1,52 @@
+{% block contenido %}
+          <div class="hero-unit">
+          {% block centro-sup %}
+            <h1>PBD 2-2013</h1>
+            <p>Grupo integrado por:</p>
+            <div class="well span-nav">
+				<div class="row-fluid">
+					<div class="span3">
+            <img src="http://lh6.googleusercontent.com/-N7rhnEW8QsI/AAAAAAAAAAI/AAAAAAAAABQ/Dp1g0BaLpvw/s512-c/photo.jpg" alt="" width=200px></img>
+				</div>				
+				<div class="span6 offset1">
+						<p>Descripcion del cargo</p>				
+				</div>
+				</div>            
+            <div class="span3">             
+            <p>Marcela Paz Santana</p>
+				</div>
+				</div>
+				<div class="well span-nav">
+				<div class="row-fluid">
+					<div class="span3">                 
+            <img src="https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-ash3/1457530_10202307982278197_793900860_n.jpg" alt="" width=200px></img>
+				</div>				
+					<div class="span6 offset1">
+						<p>Descripcion del cargo</p>				
+					</div>
+					</div> 
+            <div class="span3">            
+            <p>Ricardo Cisterna</p>
+				</div>
+				</div>   
+				<div class="well span-nav">
+				<div class="row-fluid">
+					<div class="span3">            
+            		<img src="https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-frc3/262837_4727995436609_348078428_n.jpg" alt="" width=200px></img>
+					</div>				
+					<div class="span6 offset1">
+						<p>Descripcion del cargo</p>				
+					</div> 
+					</div>           
+            <div class="span3">
+            <p>Javier Campos</p>
+            </div>
+				</div>
+				            
+            
+            <p>Sistema web implementado para el curso Proyecto de Base de Datos</p>
+            {% endblock %}
+          </div>
+
+{% endblock %}
+      

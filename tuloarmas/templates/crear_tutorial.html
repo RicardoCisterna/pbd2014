@@ -1,0 +1,156 @@
+{% extends 'template2.html' %}
+{% block TITLE %}TuLoArmas - Crear tutorial{% endblock %}
+{% block contenido %}
+<div class="hero-unit">
+         
+    <h1>Crear Tutorial</h1>
+    <div class="contenido">
+    				<form method="POST" action="{% url home %}">
+    					{% csrf_token %}
+        				<div class="row" style="overflow:hidden;">
+            				<div class="span6">
+                				<div>
+                    <label class="cuadrilla-left">Nombre Tutorial</label>
+                    <input class="mayuscula" type="text" id="mes-tabla" name="mes-tabla">
+                    </form>
+                    <form method="POST" action="{% url guardar_proceso %}">
+                    <label>Numero de proceso</label>
+                		<input type="text" name="num-proceso" value="1" />
+                
+                    <br /><hr />
+                    <label>Lista de materiales:</label>
+                    <input type="text" placeholder="Buscar..." id="filtrar-materiales" />
+                    <select style="height:187px" id="lista-materiales" multiple="multiple">
+                    {% for producto in productos %}
+                        <option value="{{producto.id}}-0" id="producto-{{producto.id}}">{{producto.nombre}}</option>
+                    {% endfor %}
+                    </select>
+                    <label class="cuadrilla-left">Descripción de armado:</label>
+                    <div  class="controls controls-row">
+          					<div class="controls">
+            				<textarea class="span10" rows="7"></textarea>
+          					</div>
+        				</div>
+                    <label class="cuadrilla-left">HH necesarias</label>
+                    <input type="text" name="numeroHH" value="0"/>
+                    <br />
+                    <hr>
+                    <!--<span>Para selección múltiple mantenga presionada la tecla 'Control'</span>-->
+                </div><!-- #lista-empleados -->
+            </div><!-- .span4 -->
+            <div class="span6">
+                <div class="spacer20"></div><div class="spacer10"></div>
+							<label class="cuadrilla-left">Material resultante</label>
+                    <input type="text" id="mes-tabla" name="mes-tabla">
+                    
+							<label class="cuadrilla-left">Número de proceso</label>
+                    <input type="text" id="mes-tabla" name="mes-tabla">
+                    <hr>
+                <label class="cuadrilla-left">Lista de agregados</label>
+                <div class="btn-group btn-group-vertical">
+                    <input type="button" class="btn" name="mover" value=">>" id="mover-btn" />
+                    <input type="button" class="btn" name="retornar" value="<<" id="retornar-btn" />
+                </div>
+                <select style="height:185px" id="lista" name="listado-agregados" multiple="multiple">
+                </select>
+                <div class="btn-group cuadrilla-left">
+                    <a href="javascript:void(0)" class="btn menos">-</a>
+                    <a href="javascript:void(0)" class="btn mas">+</a>
+                </div>
+                
+                
+                
+                <hr>
+                <input type="file" class="filestyle" data-classInput="input-small">
+                
+                <input type="hidden" name="listaJO"  id="listaJO"  value ="" />
+                <input type="hidden" name="listaSu"  id="listaSu"  value ="" />
+                <input type="hidden" name="listaGr"  id="listaGr"  value ="" />
+                <input type="hidden" name="facturaA" id="facturaA" value ="" />
+                <input type="hidden" name="subarea"  id="subarea"  value ="" />
+                <hr>
+					 <input type="submit" name="submit" value="Siguiente" class="btn btn-primary btn-medium" />
+					 <input type="submit" name="submit" value="Anterior" class="btn btn-medium" />
+					 <input type="submit" name="submit" value="Terminar" class="btn btn-success btn-medium" />
+					 <input type="submit" name="submit" value="Cancelar" class="btn btn btn-medium" />
+            </div>
+        </div><!-- .row -->
+    </form>
+
+    </div><!-- .content -->
+				            
+            
+            <p>Sistema web implementado para el curso Proyecto de Base de Datos</p>
+            
+</div>
+{% endblock %}
+{% block SCRIPT %}
+
+
+<script type="text/javascript" >
+$(document).ready(function() {
+		$('#mover-btn').on('click', function() {
+        var lista_materiales = $('#lista-materiales').val();
+        
+        for (var i = 0; i < lista_materiales.length; i++) {
+            var id = lista_materiales[i].split('-')[0];
+            
+            $('#producto-' + id).appendTo('#lista').append('<p> - cant <span>0</span></p>');
+        }
+    });
+    
+    $('#retornar-btn').on('click', function() {
+        var lista = $('#lista').val();
+        for (var i = 0; i < lista.length; i++) {
+            var id = lista[i].split('-')[0];
+            
+            $('#producto-' + id).appendTo('#lista-materiales').find('p').remove();
+        }
+    });
+    $('.mas, .menos').on('click', function() {
+        var tipo = undefined;
+        if ($(this).hasClass('menos')) tipo = 'menos';
+        if ($(this).hasClass('mas')) tipo = 'mas';
+        
+        var lista_materiales = $(this).parent().prev().val();
+        for (var i = 0; i < lista_materiales.length; i++) {
+            var id = lista_materiales[i].split('-')[0];
+            
+            var $option = $('#producto-' + id);
+            var $span = $option.find('span');
+            
+            var horas = (tipo == 'mas')? parseFloat($span.html()) + 1 : parseFloat($span.html()) - 1;
+            if (horas < 0) horas = 0;
+            $span.html('' + horas);
+            
+            $option.attr('value', id + '-' + horas);
+            
+            // Se cambia la cantidad de horas asignandolas junto al id
+            
+            $option.prop("selected", false).prop("selected", true);
+        }
+    });
+    /*$("#filtrar-materiales").on("keyup",function(){
+		$("#lista-materiales option").each(function(){
+			if($(this).html().toUpperCase().indexOf($("#filtrar-materiales").val().toUpperCase() )==-1	){
+				$(this).hide();
+				//alert($(this).html()+"->ocultar");
+			}
+			else{
+				$(this).show();			
+				//alert($(this).html()+"->mostrar");
+			}
+		}); 
+    });*/
+    $('input[name=submit]:submit').on('click', function() {
+        $("option").each(function(){
+            this.selected=true;
+        });
+        
+    });
+    
+});
+</script>
+
+{% endblock %}
+      

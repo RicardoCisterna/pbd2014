@@ -1,15 +1,51 @@
-{% extends 'base.html' %}
-{% block MENU3 %}{% endblock %}
+{% extends 'template.html' %}
+{% block MENU2 %}{% endblock %}
 {% block TITLE %}TuLoArmas{% endblock %}
 {% block CONTENT %}
-    <div id="login">
-        <form action="/login/" method="post">
-            <h2>Iniciar Sesión</h2>
-            {% for field in login_form %}
-                {% csrf_token %}
-                {{field}}
-            {% endfor %}
-            <input type="submit" value="Login" name="submit" />
-        </form>
-    </div><!-- #login -->
+
+          <div class="hero-unit">
+          {% block centro-sup %}
+            <h1>Tutoriales!</h1>
+            <p>En esta web encontrarás una infinidad de tutoriales con los cuales podrás armar y desarmas casi cualquier cosa, además se facilita el contacto con proveedores de las piezas que tu necesites para tus proyectos. Visita nuestras categorías y sigue los tutoriales!</p>
+            <p>Si no estás registrado presiona aquí
+            <p><a href="/registro" class="btn btn-primary btn-large">Registrate &raquo;</a></p>
+            {% endblock %}
+          </div>
+          {% block destacados %}
+          <div class="row-fluid">
+            <div class="span4">
+              <h2>Producto destacado 1</h2>
+              <p>Bicicleta oxford 2014 </p>
+              <p><a class="btn" href="#">Ver detalles &raquo;</a></p>
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Producto destacado 2</h2>
+              <p>Bicicleta de montaña personal </p>
+              <p><a class="btn" href="#">Ver detalles &raquo;</a></p>
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Producto destacado 3</h2>
+              <p>Otros productos </p>
+              <p><a class="btn" href="#">Ver detalles &raquo;</a></p>
+            </div><!--/span-->
+          </div><!--/row-->
+          <div class="row-fluid">
+            <div class="span4">
+              <h2>Producto destacado 4</h2>
+              <p>Otro producto más </p>
+              <p><a class="btn" href="#">Ver detalles &raquo;</a></p>
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Producto destacado 5</h2>
+              <p>Más productos destacados </p>
+              <p><a class="btn" href="#">Ver detalles &raquo;</a></p>
+            </div><!--/span-->
+            <div class="span4">
+              <h2>Producto destacado 6</h2>
+              <p>Ultimo producto destacado </p>
+              <p><a class="btn" href="#">Ver detalles &raquo;</a></p>
+            </div><!--/span-->
+          </div><!--/row-->
+
+
 {% endblock %}

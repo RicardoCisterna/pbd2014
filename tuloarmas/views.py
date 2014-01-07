@@ -144,7 +144,85 @@ def tutoriales(request):
         },
         context_instance=RequestContext(request)
     )
+    
+def datos(request):
+    if request.method == 'POST':
+        passwd = request.POST['pass']		
+        if passwd:
+            if request.user.check_password(passwd):
+                newpass=request.POST['newpass']
+                if newpass:
+                    newpass2=request.POST['newpass2']
+                    if newpass == newpass2:
+                        name = request.user.first_name
+                        rut = request.user.last_name
+                        mail = request.user.email
+                        if request.POST['name']:
+                            name = request.POST['name']
+                        if request.POST['rut']:
+                            numRut = request.POST['rut'][:-2]
+                            codVer = request.POST['rut'][-1:]
+                            if esRut(request.POST['rut']) and  digito_verificador(numRut) == codVer:
+                                rut = request.POST['rut']
+                            else:
+                                ctx={'error':"Debe ingresar un rut válido con el siguiente formato: XXXXXXXX-Y."}
+                                return render_to_response('datos.html', ctx,context_instance = RequestContext(request))
+                        if request.POST['mail']:
+                            mail = request.POST['mail']
+                        request.user.set_password(newpass)
+                        request.user.save()
+                        new_user = User.objects.filter(username=request.user.username).update(first_name=name,last_name=rut,email=mail)
+                        return render_to_response('datos.html',context_instance=RequestContext(request))
+                    else:
+                        return render_to_response('datos.html', {'error':"Las nuevas contraseñas ingresadas no coinciden entre si."},context_instance = RequestContext(request))
+                else:
+                    name = request.user.first_name
+                    rut = request.user.last_name
+                    mail = request.user.email
+                    if request.POST['name']:
+                        name = request.POST['name']
+                    if request.POST['rut']:
+                        numRut = request.POST['rut'][:-2]
+                        codVer = request.POST['rut'][-1:]
+                        if esRut(request.POST['rut']) and digito_verificador(numRut) == codVer:
+                            rut = request.POST['rut']
+                        else:
+                            return render_to_response('datos.html', {'error':"Debe ingresar un rut válido con el siguiente formato: XXXXXXXX-Y."},context_instance = RequestContext(request))
+                    if request.POST['mail']:
+                        mail = request.POST['mail']
+                    new_user = User.objects.filter(username=request.user.username).update(first_name=name,last_name=rut,email=mail)
+                    return render_to_response('datos.html', {'success':True},context_instance = RequestContext(request))
+            else:
+                return render_to_response('datos.html', {'error':"La contraseña ingresada no es correcta."},context_instance = RequestContext(request))
+        else:
+            return render_to_response('datos.html', {'error':"Debe ingresar su contraseña para realizar cualquier cambio."},context_instance = RequestContext(request))
+    else:
+        return render_to_response('datos.html',context_instance = RequestContext(request))
 
+def vista(request):
+    return render_to_response("about2.html",{},context_instance=RequestContext(request))
+
+def cotizaciones(request):
+    cotizacion = Cotizacion.objects.all()
+    if len(cotizacion) > 0:
+        ctx={
+            'cotizacion': cotizacion,
+        }
+        return render_to_response('cotizaciones.html', ctx, context_instance=RequestContext(request))
+    else:
+        messages.error(request, "No hay productos")
+        return HttpResponseRedirect('/')
+
+def crear_tutorial(request):
+    productos = Producto.objects.all()
+    if len(productos) > 0:
+        ctx={
+            'productos': productos,
+        }
+        return render_to_response('crear_tutorial.html', ctx, context_instance=RequestContext(request))
+    else:
+        messages.error(request, "No hay productos")
+        return HttpResponseRedirect('/')
 #@login_required(login_url='/')
 def detalle(request, producto_id):
     producto = Producto.objects.get(id=producto_id)
@@ -160,7 +238,9 @@ def detalle(request, producto_id):
         },
         context_instance=RequestContext(request)
     )
-
+def guardar_proceso_view(request):
+    messages.success(request,request.POST.getlist('listado')[0].split('-')[1])
+    return render_to_response("crear_tutorial.html",{},context_instance=RequestContext(request))
 #@login_required(login_url='/')
 def menu(request):
     if request.user.is_anonymous():
@@ -199,3 +279,26 @@ def nuevo_comentario(request, producto_id):
     new_comentario.save()
     return HttpResponseRedirect('/productos/' + str(producto_id) + '/')
  
+def digito_verificador(numRut):
+    value = 11 - sum([ int(a)*int(b)  for a,b in zip(str(numRut).zfill(8), '32765432')])%11
+    return {10: 'K', 11: '0'}.get(value, str(value))
+
+def esRut(rut):
+    try:
+        val = int(rut[:-2])
+    except ValueError:
+        return False
+    try:
+        val = int(rut[-1:])
+    except ValueError:
+        return False
+    if rut[-2:-1] == "-":
+        return True
+    return False
+
+def esInt(numero):
+    try:
+        val = int(numero)
+    except ValueError:
+        return False
+    return True

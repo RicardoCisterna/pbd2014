@@ -77,13 +77,18 @@
           <div class="controls">
             <textarea class="span7" rows="6"></textarea>
           </div>
+        </div>
 
-				<hr />
+
+      </div>
+
+
+
+      <div class="control-fluid-center">
           <button type="submit" class="btn btn-primary">Aceptar</button>
           <button type="button" class="btn">Agregar más productos</button>
           <button type="button" class="btn">Cancelar</button>
         </div>
-        
 
  </form>
 </div>

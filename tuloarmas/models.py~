@@ -2,12 +2,21 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 
 #class Producto(models.Model):
 #    id = models.AutoField('ID', primary_key=True)
 #    nombre = models.CharField(max_length=255)
 #    descripcion = models.TextField()
 #    precio = models.IntegerField()
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+>>>>>>> 07c89df9e928c447741f1200188af459e583690d
+>>>>>>> 39a646f3beef5c149537960c5704d65221be015a
 #    def __unicode__(self):
 #        return u'%s' % (self.nombre)
 
@@ -58,21 +67,22 @@ class Categoria(models.Model):
     id = models.AutoField('ID', primary_key=True)
     nombre_categoria=models.CharField(max_length=255)
     #llaves foraneas
-<<<<<<< HEAD
     raiz = models.ForeignKey('Categoria',null=True,blank=True)
-=======
 <<<<<<< HEAD
-    raiz = models.ForeignKey('Categoria',null=True,blank=True)
-=======
-    raiz = models.ForeignKey('self')
->>>>>>> d544aba24563bb5f2d5d3df3d0eefd67cea5d4a1
->>>>>>> 07c89df9e928c447741f1200188af459e583690d
 
 #class Comentario(models.Model):
 #    id = models.AutoField('ID', primary_key=True)
 #    creado = models.DateTimeField(auto_now_add=True)
 #    texto = models.TextField()
 
+=======
+
+#class Comentario(models.Model):
+#    id = models.AutoField('ID', primary_key=True)
+#    creado = models.DateTimeField(auto_now_add=True)
+#    texto = models.TextField()
+
+>>>>>>> 07c89df9e928c447741f1200188af459e583690d
     # Llaves foráneas
 #    Usuario = models.ForeignKey(Usuario)
 #    producto = models.ForeignKey(Producto)
@@ -86,59 +96,15 @@ class Material(models.Model):
     tipo_material = models.CharField(max_length=1)
     marca=  models.CharField(max_length=255)
     modelo= models.CharField(max_length=255)
-<<<<<<< HEAD
     imagen_material =  models.CharField(max_length=255)
     #llaves foreaneas
     categoria = models.ForeignKey(Categoria,on_delete=models.PROTECT)
-=======
-<<<<<<< HEAD
-    imagen_material =  models.CharField(max_length=255)
-    #llaves foreaneas
-    categoria = models.ForeignKey(Categoria)
-    
-=======
-    imagen_material =  models.ImageField(upload_to='/tmp')
-    #llaves foreaneas
-    categoria = models.ForeignKey(Categoria)
->>>>>>> d544aba24563bb5f2d5d3df3d0eefd67cea5d4a1
->>>>>>> 07c89df9e928c447741f1200188af459e583690d
 
 class Cotizacion(models.Model):
     id = models.AutoField('ID', primary_key=True) 
     fecha_cotizacion=models.DateField(auto_now_add=True)    
     #llaves foraneas    
-<<<<<<< HEAD
     usuario = models.ForeignKey(Usuario,on_delete=models.PROTECT)
-=======
-    usuario = models.ForeignKey(Usuario)
-<<<<<<< HEAD
-    
-    
-class Proveedor_material (models.Model):
-    id  = models.AutoField('ID', primary_key=True) 
-    precio_material = models.IntegerField()
-    visibilidad = models.CharField(max_length=255)
-    codigo_proveedor_material = models.CharField(max_length=255)
-    #llaves foraneas
-    Usuario = models.ForeignKey(Usuario)
-    material = models.ForeignKey(Material)
-
-class Envio (models.Model):
-    id = models.AutoField('ID', primary_key=True) 
-    #llaves foraneas
-    Usuario = models.ForeignKey(Usuario)
-    cotizacion = models.ForeignKey(Cotizacion)
-    material= models.ForeignKey(Material)
-
-class Detalle_cotizacion (models.Model):
-    cantidad_material =  models.IntegerField()
-    #llaves foraneas
-    cotizacion = models.ForeignKey(Cotizacion, unique=True)
-    material = models.ForeignKey(Material, unique=True)
-    
-=======
-    
->>>>>>> 07c89df9e928c447741f1200188af459e583690d
     
 class Proveedor_material (models.Model):
     id  = models.AutoField('ID', primary_key=True) 
@@ -162,7 +128,6 @@ class Detalle_cotizacion (models.Model):
     cotizacion = models.ForeignKey(Cotizacion, unique=True ,on_delete=models.PROTECT)
     material = models.ForeignKey(Material, unique=True ,on_delete=models.PROTECT)
     
->>>>>>> d544aba24563bb5f2d5d3df3d0eefd67cea5d4a1
 class Caracteristicas(models.Model):
     id = models.AutoField('ID', primary_key=True)
     nombre_caracterisitica= models.CharField(max_length=255)
@@ -239,21 +204,9 @@ class Uso_herramienta (models.Model):
     proceso = models.ForeignKey(Proceso ,on_delete=models.PROTECT)  
 
 class Compone_A(models.Model):
-<<<<<<< HEAD
     id = models.AutoField('ID', primary_key=True) 
     material = models.ForeignKey(Material)
     descripcion_herrmienta =  models.IntegerField()
-=======
-<<<<<<< HEAD
-    id = models.AutoField('ID', primary_key=True) 
-    material = models.ForeignKey(Material)
-    descripcion_herrmienta =  models.IntegerField()
-=======
-    #id = models.AutoField('ID', primary_key=True) 
-    material = models.ForeignKey(Material,primary_key=True)
-    otro=descripcion_herrmienta =  models.IntegerField()
->>>>>>> d544aba24563bb5f2d5d3df3d0eefd67cea5d4a1
->>>>>>> 07c89df9e928c447741f1200188af459e583690d
     nombre_material1= models.CharField(max_length=255)
     descripcion_material = models.TextField()
     tipo_material = models.CharField(max_length=1)
@@ -263,18 +216,8 @@ class Compone_A(models.Model):
     #llaves foreaneas
 
 class Compuesto_de(models.Model):
-<<<<<<< HEAD
     id = models.AutoField('ID', primary_key=True) 
     material = models.OneToOneField(Material)
-=======
-<<<<<<< HEAD
-    id = models.AutoField('ID', primary_key=True) 
-    material = models.OneToOneField(Material)
-=======
-    #id = models.AutoField('ID', primary_key=True) 
-    material = models.OneToOneField(Material,primary_key=True)
->>>>>>> d544aba24563bb5f2d5d3df3d0eefd67cea5d4a1
->>>>>>> 07c89df9e928c447741f1200188af459e583690d
     nombre_material2= models.CharField(max_length=255)
     descripcion_material = models.TextField()
     tipo_material = models.CharField(max_length=1)
@@ -286,17 +229,14 @@ class Compuesto_de(models.Model):
 
 class Composicion (models.Model):
     #llaves foranea
-<<<<<<< HEAD
     id = models.AutoField('ID', primary_key=True) 
     compuesto_de = models.ForeignKey(Compuesto_de)
+<<<<<<< HEAD
     compone_a = models.ForeignKey(Compone_A)
 =======
 <<<<<<< HEAD
-    id = models.AutoField('ID', primary_key=True) 
-    compuesto_de = models.ForeignKey(Compuesto_de)
     compone_a = models.ForeignKey(Compone_A)
 =======
-    compuesto_de = models.ForeignKey(Compuesto_de, primary_key=True)
-    compone_a = models.ForeignKey(Compone_A, primary_key=True)
->>>>>>> d544aba24563bb5f2d5d3df3d0eefd67cea5d4a1
+    compone_a = models.ForeignKey(Compone_A)
 >>>>>>> 07c89df9e928c447741f1200188af459e583690d
+>>>>>>> 39a646f3beef5c149537960c5704d65221be015a
