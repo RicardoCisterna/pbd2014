@@ -1,0 +1,27 @@
+-- Function: "TRG_AUDIT"()
+
+-- DROP FUNCTION "TRG_AUDIT"();
+
+CREATE OR REPLACE FUNCTION "TRG_AUDIT"()
+  RETURNS trigger AS
+$BODY$BEGIN
+  IF (TG_OP = 'DELETE') THEN
+    INSERT INTO aplicacion_auditoria ("Time_stamp", "tabla","filas","usuario_accion","valor_anterior","valor_nuevo", "operacion")
+           VALUES (now(), TG_TABLE_NAME,"nulo", USER, OLD, NULL,"I");
+    RETURN OLD;
+  ELSIF (TG_OP = 'UPDATE') THEN
+    INSERT INTO aplicacion_auditoria ("Time_stamp", "tabla","filas","usuario_accion","valor_anterior","valor_nuevo", "operacion")
+           VALUES (now(), TG_TABLE_NAME,"nulo", USER, OLD, NEW,"I");
+    RETURN NEW;
+  ELSIF (TG_OP = 'INSERT') THEN
+    INSERT INTO aplicacion_auditoria ("Time_stamp", "tabla","filas","usuario_accion","valor_anterior","valor_nuevo", "operacion")
+           VALUES (now(), TG_TABLE_NAME,"nulo", USER, NULL, NEW,"I");
+    RETURN NEW;
+  END IF;
+  RETURN NULL;
+END;$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION "TRG_AUDIT"()
+  OWNER TO tuloarmas;
+
