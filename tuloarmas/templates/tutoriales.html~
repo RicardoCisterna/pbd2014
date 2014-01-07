@@ -116,7 +116,7 @@
 
             					</ul> 
          					</li> 
-								<li class="dropdown"><a class="dropdown-toggle" href="tutoriales">Tutoriales</a> 
+								<li class="dropdown"><a class="dropdown-toggle" href="/tutoriales">Tutoriales</a> 
             					<ul class="dropdown-menu submenu"> 
               						<li><a  href="#menu2.1">Menu 2.1</a></li> 
               						<li><a  href="#menu2.2">Menu 2.2</a></li> 

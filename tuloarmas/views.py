@@ -33,6 +33,24 @@ def index(request):
 		},
 		context_instance=RequestContext(request)
 	)
+def about(request):
+	return render_to_response(
+		'about.html',
+		{
+			'login_form': LoginForm,
+			'user': request.user
+		},
+		context_instance=RequestContext(request)
+	)
+def FAQ(request):
+	return render_to_response(
+		'FAQ.html',
+		{
+			'login_form': LoginForm,
+			'user': request.user
+		},
+		context_instance=RequestContext(request)
+	)
 def login_view(request):
     """
     Vista encargada autenticar un usuario para ingresar al sistema
@@ -144,6 +162,19 @@ def detalle(request, producto_id):
     )
 
 #@login_required(login_url='/')
+def menu(request):
+    if request.user.is_anonymous():
+    	return HttpResponseRedirect('/login')
+    else:
+        return render_to_response(
+		'menu.html',
+		{
+			'login_form': LoginForm,
+			'user': request.user
+		},
+		context_instance=RequestContext(request)
+	)
+
 def nuevo_comentario(request, producto_id):
     # acceso mediante post
     if not request.method == 'POST':

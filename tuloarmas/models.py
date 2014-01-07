@@ -9,6 +9,11 @@ from django.core.urlresolvers import reverse
 #    nombre = models.CharField(max_length=255)
 #    descripcion = models.TextField()
 #    precio = models.IntegerField()
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+>>>>>>> 07c89df9e928c447741f1200188af459e583690d
 #    def __unicode__(self):
 #        return u'%s' % (self.nombre)
 
@@ -60,12 +65,21 @@ class Categoria(models.Model):
     nombre_categoria=models.CharField(max_length=255)
     #llaves foraneas
     raiz = models.ForeignKey('Categoria',null=True,blank=True)
+<<<<<<< HEAD
 
 #class Comentario(models.Model):
 #    id = models.AutoField('ID', primary_key=True)
 #    creado = models.DateTimeField(auto_now_add=True)
 #    texto = models.TextField()
 
+=======
+
+#class Comentario(models.Model):
+#    id = models.AutoField('ID', primary_key=True)
+#    creado = models.DateTimeField(auto_now_add=True)
+#    texto = models.TextField()
+
+>>>>>>> 07c89df9e928c447741f1200188af459e583690d
     # Llaves foráneas
 #    Usuario = models.ForeignKey(Usuario)
 #    producto = models.ForeignKey(Producto)
@@ -214,4 +228,8 @@ class Composicion (models.Model):
     #llaves foranea
     id = models.AutoField('ID', primary_key=True) 
     compuesto_de = models.ForeignKey(Compuesto_de)
+<<<<<<< HEAD
     compone_a = models.ForeignKey(Compone_A)
+=======
+    compone_a = models.ForeignKey(Compone_A)
+>>>>>>> 07c89df9e928c447741f1200188af459e583690d

@@ -133,8 +133,8 @@
       <div class="span9">
       		<div class="well span-nav">
         		<h1>Datos de usuario</h1>
-        		<form action="./user" method="get" >
-        			<h4>Actualice sus datos</h4>
+				<form  action="" method="POST">
+					<h4>Actualice sus datos</h4>
 					<p>Usuario  : <input name="usuario" type="text" /></p>
         			<!--<p>Nombre   : <input name="nombre" type="text" /></p>
         			<p>Apellido : <input name="apellido" type="text" /></p>
@@ -145,40 +145,6 @@
         			<p>Contrase&ntilde;a: <input name="passw" type="password" /></p>
         			<input name="recordar" type="checkbox" value="recordar" />Recibir cotizaciones al correo
         			<input type="submit" value="Enviar" />
-    			</form>
-<form  action="" method="POST">
-			{%csrf_token%}
-				<div id="tabla">
-					<table size="15">
-						
-						<tr>
-							<th scope="col" width=100>seleccion</th>
-							<th scope="col" width=200>Codigo Area</th>
-							<th scope="col" width=200>Direccion Bodega</th>
-							<th scope="col" width=200>Pasillo</th>
-							<th scope="col" width=200>Estante</th>
-							<th scope="col" width=200>Gaveta</th>
-						</tr>
-						
-						
-						{% if areas%}
-						
-							{% for elemento in areas %}
-								<tr class="aa" bgcolor="silver">
-									<td width=100> <input type="radio" name="lala" value="{{elemento.id}}"> </td>
-									<td width=100>{{elemento.id}}</td>
-									<td width=100>{{elemento.cod_bodega.direccion}}</td>
-									<td width=100>{{elemento.pasillo}}</td>
-									<td width=100>{{elemento.estante}}</td>
-									<td width=100>{{elemento.gaveta}}</td>
-								
-								</tr>
-							{% endfor %}
-						{% endif %}
-
-						
-					</table>
-					
 				</div>
 				<input id="eliminar" type="submit" value="Actualizar" name="chupeta">
 			</form>
