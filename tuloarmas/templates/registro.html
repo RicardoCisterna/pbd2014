@@ -1,121 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Tutoriales</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tutoriales de todo">
-    <meta name="author" content="jaco" >
+{% extends 'template.html' %}
+{% block TITLE %}TuLoArmas{% endblock %}
 
-    <!-- Le styles -->
-    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-
-      @media (max-width: 980px) {
-        /* Enable use of floated navbar text */
-        .navbar-text.pull-right {
-          float: none;
-          padding-left: 5px;
-          padding-right: 5px;
-        }
-      }
-    a.menu:after, .dropdown-toggle:after { 
-        content: none; 
-      } 
-
-    ul.nav li.dropdown:hover { 
-      font-weight: bold; 
-     
-
-      
-} 
-  ul.nav li.dropdown:hover ul.dropdown-menu.submenu{ 
-    display: block; 
-    margin-left: 220px; 
-     
-    margin-top: -36px; 
-                 
-                background-color:#FFF; 
-                font-weight: normal; 
-                 
-  } 
-
-    </style> 
-    <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
-  </head>
-
-  <body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-      
-        <div class="container-fluid">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="{% url home %}">TuLoArmas</a>
-          <div class="nav-collapse collapse">
-          
-          {% if user.is_authenticated %}
-    		<p class="navbar-text pull-right">
-    		<a href="/logout/">Cerrar Sesión</a>
-    		</p>
-    		<p class="navbar-text pull-right">
-    		 <a href="/menu/">Usuario {{user.username}}</a> - 
-    		</p>
-    	  {%else%}
-    	  	<p class="navbar-text pull-right">
-    		<a href="/login/">Iniciar Sesión</a>
-    		</p>
-    	  {%endif%}
-            <ul class="nav">
-              <li class="active"><a href="/">Home</a></li>
-              <li><a href="/about">About</a></li>
-              <li><a href="/faq">FAQ</a></li>
-              <li><a href="/contact">Contact</a></li>
-              <li><a href="/ayuda">Ayuda</a></li>
-            </ul>
-            <form class="navbar-form navbar-left" role="search">
-        	<div class="form-group">
-          	    <input type="text" class="form-control" placeholder="Buscar">
-        	    <button type="submit" class="btn btn-default">Enviar</button></div>
-          </form>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
-
-
-	<div class="container-fluid">
+{% block contenido %}
+<div class="hero-unit">
 	<div class="row-fluid">	
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove">
-		</i></button>
 			<h3 id="modalLabel">Bienvenido</h3>
 		</div>
-
-		<div class="modal-body">
 
 			<form>
 
@@ -173,10 +63,10 @@
 				<input type="radio" name="inputWalls" id="inputWalls" value="Administrador">
 			   Proveedor</label>
 
-        <div class="form-actions">
+			<hr /> 
           <button type="submit" class="btn btn-primary">Enviar</button>
           <button type="button" class="btn">Cancelar</button>
-        </div>
+
 
 				
 			</form>
@@ -187,12 +77,4 @@
 
 		</div>
 
-		
-
-
-
-
-
-	
-	</body>
-</html>
+{% endblock %}

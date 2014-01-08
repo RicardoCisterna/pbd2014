@@ -17,6 +17,10 @@ from django.contrib.auth.models import User
 
 # Modelos
 from tuloarmas.models import *
+import datetime
+from tuloarmas.forms import *
+from django.http import *
+
 
 def hola(request):
 	return HttpResponse("Hello world")
@@ -215,15 +219,30 @@ def cotizaciones(request):
 
 def crear_tutorial(request):
     productos = Producto.objects.all()
-    if len(productos) > 0:
-        ctx={
-            'productos': productos,
-        }
-        return render_to_response('crear_tutorial.html', ctx, context_instance=RequestContext(request))
+    user = User.objects.all()
+    if request.method == 'POST':
+        nombreTuto = request.POST['nombreTuto']
+        descripcion= request.POST['descripcion']
+        HH = request.POST['numeroHH']
+        materialResultante= request.POST['materialResultante']
+        NumProc= request.POST['NumProc']
+        listaAgregado = request.POST['listado-agregados']
+        p=Tutorial()
+        p.video ='video.html'
+        p.nombre_tutorial = nombreTuto
+        p.descripcion_tutorial=descripcion
+        p.imagen_tutorial='imagen.jpg'
+        p.Usuario_id=1
+        p.categoria_id=1
+        p.save()
+
+        #new_tutorial = Tutorial(video='asd', nombre_tutorial=nombreTuto, descripcion_tutorial=descripcion, imagen_tutorial='asd',Usuario_id=1, categoria_id=1)
+        ctx={'success':"tutorial agregado correctamente",'productos':productos}
+        return render_to_response('crear_tutorial.html',ctx, context_instance=RequestContext(request))
     else:
-        messages.error(request, "No hay productos")
-        return HttpResponseRedirect('/')
-#@login_required(login_url='/')
+        return render_to_response('crear_tutorial.html',{'productos':productos}, context_instance=RequestContext(request))
+        
+
 def detalle(request, producto_id):
     producto = Producto.objects.get(id=producto_id)
     comentarios = Comentario.objects.filter(producto=producto_id)

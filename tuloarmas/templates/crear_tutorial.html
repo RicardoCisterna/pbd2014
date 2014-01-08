@@ -5,17 +5,16 @@
          
     <h1>Crear Tutorial</h1>
     <div class="contenido">
-    				<form method="POST" action="{% url home %}">
+    				<form method="POST" action="">
     					{% csrf_token %}
         				<div class="row" style="overflow:hidden;">
             				<div class="span6">
                 				<div>
                     <label class="cuadrilla-left">Nombre Tutorial</label>
-                    <input class="mayuscula" type="text" id="mes-tabla" name="mes-tabla">
-                    </form>
-                    <form method="POST" action="{% url guardar_proceso %}">
-                    <label>Numero de proceso</label>
-                		<input type="text" name="num-proceso" value="1" />
+                    <input class="mayuscula" type="text" id="mes-tabla" name="nombreTuto">
+                    
+                    <label class="cuadrilla-left">Descripción del tutorial</label>
+                		<input type="text" />
                 
                     <br /><hr />
                     <label>Lista de materiales:</label>
@@ -28,7 +27,7 @@
                     <label class="cuadrilla-left">Descripción de armado:</label>
                     <div  class="controls controls-row">
           					<div class="controls">
-            				<textarea class="span10" rows="7"></textarea>
+            				<textarea class="span10" rows="7" name="descripcion"></textarea>
           					</div>
         				</div>
                     <label class="cuadrilla-left">HH necesarias</label>
@@ -41,10 +40,10 @@
             <div class="span6">
                 <div class="spacer20"></div><div class="spacer10"></div>
 							<label class="cuadrilla-left">Material resultante</label>
-                    <input type="text" id="mes-tabla" name="mes-tabla">
+                    <input type="text" id="mes-tabla" name="materialResultante">
                     
 							<label class="cuadrilla-left">Número de proceso</label>
-                    <input type="text" id="mes-tabla" name="mes-tabla">
+                    <input type="text" id="NumProc" name="NumProc">
                     <hr>
                 <label class="cuadrilla-left">Lista de agregados</label>
                 <div class="btn-group btn-group-vertical">
