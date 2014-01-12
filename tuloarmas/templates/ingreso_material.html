@@ -1,87 +1,65 @@
 {% extends 'template2.html' %}
 {% block TITLE %}TuLoArmas{% endblock %}
 {% block contenido %}
-
+    
 <div class="hero-unit">
-        <h4>Ingrese los datos del material COMPUESTO que desea ingresar</h4>
+        <h4>Ingrese los datos del material que desea ingresar</h4>
         <div class="contenido">
-        <form class="form-horizontal" method="POST" action="{url home}">
+        <form class="form-horizontal" method="POST" action=""">
         {% csrf_token %}
           <p><div class="control-group">
             <label class="control-label" for="inputName">Nombre</label>
             <div class="controls">
-              <input type="text" class="span6" id="inputName">
+              <input type="text" class="span6" id="nombre_material" name="nombre_material" pattern="^[A-Za-z0-9 ]{1,255}$" required/>
             </div>
           </div>
-
-          <div class="control-group">
-            <label class="control-label" for="inputCategoria">Categoría</label>
+          <p><div class="control-group">
+            <label class="control-label" for="inputName">Descripción del material</label>
             <div class="controls">
-              <input type="text" class="span6" id="inputCategoria">
+              <input type="text" class="span6" id="descripcion_material" name="descripcion_material" pattern="^[A-Za-z0-9 ]{1,255}$" required/>
             </div>
           </div>
-
-          <div class="control-group">
-            <label class="control-label" for="inputCategoria">Marca</label>
+			
+			<p><div class="control-group">
+            <label class="control-label" for="inputName">Tipo material</label>
             <div class="controls">
-              <input type="text" class="span6" id="inputCategoria">
+              <input type="text" class="span6" id="tipo_material" name="tipo_material" pattern="^[pic]{1,255}$" required/>
             </div>
           </div>
-
-          <div class="control-group">
-            <label class="control-label" for="inputCategoria">Modelo</label>
+			<p><div class="control-group">
+            <label class="control-label" for="inputName">Marca</label>
             <div class="controls">
-              <input type="text" class="span6" id="inputCategoria">
+              <input type="text" class="span6" id="marca" name="marca" pattern="^[A-Za-z0-9 ]{1,255}$" required/>
             </div>
           </div>
-
-          <div class="control-group">
-            <label class="control-label" for="inputCategoria">Código</label>
+				<p><div class="control-group">
+            <label class="control-label" for="inputName">Modelo</label>
             <div class="controls">
-              <input type="text" class="span6" id="inputCategoria">
+              <input type="text" class="span6" id="modelo" name="modelo" required/>
             </div>
           </div>
-
           <div class="control-group">
-            <label class="control-label" for="inputCategoria">Precio</label>
+            <label class="control-label" for="inputCategoria">Url imagen</label>
             <div class="controls">
-              <input type="text" class="span6" id="inputCategoria">
+              <input type="text" class="span6" id="imagen_material" name="imagen_material" required>
             </div>
+          </div>     
+			<p><div class="control-group">
+            <label class="control-label" for="inputName">Categoria</label>
+            <div class="controls">
+            <select class="selectpicker" id="categoria" name="categoria">
+            {% for catego in categoria %}
+    				<option value="{{categoria.id}}" id="categoria-{{categoria.id}}">{{catego.nombre_categoria}}</option>
+    				<select style="height:220px" id="categoria2" name="categoria2" multiple="multiple" required/>
+                </select>
+    			{% endfor %}
+  				</select>
             </div>
-          </p>
-			<div class="control-group">
-				<label class="control-label" for="inputCategoria">Agregar imagen</label>
-				<div class="controls">
-            <p><input type="file" class="filestyle" data-classInput="input-small">
-				</div>
-			</div>
-		<br /><hr />
-		<div class="control-group">
-       	<label class="control-label" for="inputCategoria">Lista de materiales</label>
-       	<div class="controls">
-          	<input type="text" placeholder="Buscar..." id="filtrar-materiales" /></div>
-          	<div class="controls">
-                    <select style="height:187px" id="lista-materiales" multiple="multiple">
-                    {% for producto in productos %}
-                        <option value="{{producto.id}}-0" id="producto-{{producto.id}}">{{producto.nombre}}</option>
-                    {% endfor %}
-                    </select>
-             </div>
-             </div>
-       
-
-
-
-        <div class="control-group">
-          <label class="control-label" for="inputCategoria">Descripción:</label>
-          <div class="controls">
-            <textarea class="span7" rows="6"></textarea>
           </div>
 
 				<hr />
-          <button type="submit" class="btn btn-primary">Aceptar</button>
-          <button type="button" class="btn">Agregar más productos</button>
-          <button type="button" class="btn">Cancelar</button>
+          	<input type="submit" name="submit" value="Agregar" class="btn btn-primary btn-medium" />
+          	<input type="button" name="submit" value="Cancelar" class="btn btn btn-medium" src="/home/" />
         </div>
         
 

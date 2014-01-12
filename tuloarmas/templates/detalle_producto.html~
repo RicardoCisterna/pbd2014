@@ -1,0 +1,29 @@
+{% extends 'template.html' %}
+{% block TITLE %}Detalle{% endblock %}
+       
+
+{% block contenido %}	
+      <div class="span9">
+      		<div class="well span-nav">
+    				<div id="detalle">
+        				<h2>{{materiales.nombre_material}}</h2>
+        				<img src={{materiales.imagen_material}} width="600px" alt="" />
+        <p>
+            {{materiales.descripcion_material}}
+        </p>
+
+ 
+        </div>
+        </div>	
+    </div><!-- #detalle -->
+
+
+ <script src="/static/js/jquery.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.carousel').carousel()
+    });
+</script>  
+
+{% endblock %}

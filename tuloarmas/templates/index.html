@@ -11,40 +11,23 @@
             {% endblock %}
           </div>
           {% block destacados %}
+          <h3>Ultimos materiales agregados</h3>
           <div class="row-fluid">
-            <div class="span4">
-              <h2>Producto destacado 1</h2>
-              <p>Bicicleta oxford 2014 </p>
-              <p><a class="btn" href="#">Ver detalles &raquo;</a></p>
-            </div><!--/span-->
-            <div class="span4">
-              <h2>Producto destacado 2</h2>
-              <p>Bicicleta de montaña personal </p>
-              <p><a class="btn" href="#">Ver detalles &raquo;</a></p>
-            </div><!--/span-->
-            <div class="span4">
-              <h2>Producto destacado 3</h2>
-              <p>Otros productos </p>
-              <p><a class="btn" href="#">Ver detalles &raquo;</a></p>
-            </div><!--/span-->
-          </div><!--/row-->
-          <div class="row-fluid">
-            <div class="span4">
-              <h2>Producto destacado 4</h2>
-              <p>Otro producto más </p>
-              <p><a class="btn" href="#">Ver detalles &raquo;</a></p>
-            </div><!--/span-->
-            <div class="span4">
-              <h2>Producto destacado 5</h2>
-              <p>Más productos destacados </p>
-              <p><a class="btn" href="#">Ver detalles &raquo;</a></p>
-            </div><!--/span-->
-            <div class="span4">
-              <h2>Producto destacado 6</h2>
-              <p>Ultimo producto destacado </p>
-              <p><a class="btn" href="#">Ver detalles &raquo;</a></p>
-            </div><!--/span-->
-          </div><!--/row-->
+          
+            {% if materiales %}
+            {% for material in materiales|slice:":3" %}
+						<div class="span4">
+              		<h2>{{material.nombre_material}}</h2>
+              		<img src={{material.imagen_material}} width="200px" alt="" />
+              <p>{{material.descripcion_material}}</p>
+              <p><a class="btn" href="/detalle_producto/{{material.id}}">Ver detalles &raquo;</a></p>
+              </div><!--/span-->
+              {% endfor %}
+              {% else %}
+				<p>No se encontraron materiales</p> 
+				{% endif %}         
+            </div>
+            
 	{% endblock %}
 
 {% endblock %}

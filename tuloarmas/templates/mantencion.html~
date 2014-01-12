@@ -1,0 +1,6 @@
+{% extends 'template.html' %}
+{% block TITLE %}TuLoArmas{% endblock %}
+{% block contenido %}
+
+
+{% endblock %}

@@ -133,23 +133,18 @@ border="0" ALT="Google" align="absmiddle" ></a>
         
           <li class="dropdown"><a class="dropdown-toggle" href="/productos">Productos</a> 
             <ul class="dropdown-menu submenu"> 
-              <li><a  href="#menu1.1">Menu 1.1</a></li> 
-              <li><a  href="#menu1.2">Menu 1.2</a></li> 
-              <li><a  href="#menu1.3">Menu 1.3</a></li> 
-              <li><a  href="#menu1.4">Menu 1.4</a></li> 
-              <li><a  href="#menu1.5">Menu 1.5</a></li> 
+            {% for categoria in categoria %}
+              <li><a  href="/productos/{{categoria.id}}">{{categoria.nombre_categoria}}</a></li> 
+              {% endfor %}
 
             </ul> 
           </li> 
 
-          <li class="dropdown"><a class="dropdown-toggle" href="tutoriales">Tutoriales</a> 
+          <li class="dropdown"><a class="dropdown-toggle" href="/tutoriales">Tutoriales</a> 
             <ul class="dropdown-menu submenu"> 
-              <li><a  href="#menu2.1">Menu 2.1</a></li> 
-              <li><a  href="#menu2.2">Menu 2.2</a></li> 
-              <li><a  href="#menu2.3">Menu 2.3</a></li> 
-              <li><a  href="#menu2.4">Menu 2.4</a></li> 
-              <li><a  href="#menu2.5">Menu 2.5</a></li> 
-
+              {% for categoria in categoria %}
+              <li><a  href="/tutoriales/{{categoria.id}}/">{{categoria.nombre_categoria}}</a></li> 
+              {% endfor %}
             </ul> 
           </li> 
 		  </div>
@@ -178,6 +173,7 @@ border="0" ALT="Google" align="absmiddle" ></a>
    <!--<script- Placed at the end of the document so the pages load faster -->
    <script src="/static/js/jquery.js"></script><!--esta-->
    <script src="/static/js/ambiance.js"></script><!--esta-->
+   <script src="/static/js/busq.js"></script>
    <script type="text/javascript" ><!--esto es lo que pasa a mayusculas los inputs-->
 		$("input.mayuscula").on("keyup",function(){
 		    $(this).val($(this).val().toUpperCase());    
@@ -205,6 +201,11 @@ border="0" ALT="Google" align="absmiddle" ></a>
     <script type="text/javascript" src="/static/js/bootstrap-filestyle.min.js"> 
 			$(":file").filestyle({classInput: "input-small"});
     </script>
+<script src="http://code.jquery.com/jquery.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/js/busq.js">
+
+</script>
    {% block SCRIPT %}
    {% endblock %}
   </body>

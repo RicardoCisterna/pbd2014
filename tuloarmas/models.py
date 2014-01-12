@@ -21,6 +21,7 @@ class Usuario (models.Model):
     nombre_usuario= models.CharField(max_length=100)
     apellido_usuario = models.CharField(max_length=100)
     correo_usuario =  models.EmailField()
+    password = models.CharField(max_length=255)
     direccion_usuario = models.CharField(max_length=50)
     telefono = models.CharField(max_length=20, null=True,blank=True)
     celular_usuario = models.CharField(max_length=20, null=True,blank=True)
@@ -54,6 +55,8 @@ class Material(models.Model):
     imagen_material =  models.CharField(max_length=255)
     #llaves foreaneas
     categoria = models.ForeignKey(Categoria,on_delete=models.PROTECT)
+    class Meta:
+        ordering = ["-id"]
 
 class Cotizacion(models.Model):
     id = models.AutoField('ID', primary_key=True) 
@@ -103,6 +106,8 @@ class Tutorial(models.Model):
     #llaves foraneas
     Usuario = models.ForeignKey(Usuario ,on_delete=models.PROTECT)
     categoria = models.ForeignKey(Categoria ,on_delete=models.PROTECT)
+    class Meta:
+        ordering = ["-id"]
 
 class Comentario (models.Model):
     cuerpo= models.TextField()
@@ -121,15 +126,19 @@ class Notificacion (models.Model):
 class Proceso(models.Model):
     id =models.AutoField('ID', primary_key=True)
     nombre_proceso= models.CharField(max_length=255)
-    descripcion_proceso = models.TextField()
+    descripcion_proceso = models.CharField(max_length=255)
     hh = models.IntegerField()
     numero_proceso =models.IntegerField()
+    imagen_proceso = models.CharField(max_length=255,null=True,blank=True)
     #llaves foraneas
     tutorial = models.ForeignKey(Tutorial,on_delete=models.PROTECT )
     material = models.ForeignKey(Material ,on_delete=models.PROTECT)
 
+    class Meta:
+        ordering = ["numero_proceso"]
+
 class Consumo (models.Model):
-    id =models.AutoField('ID', primary_key=True)
+    id =models.AutoField('ID',   primary_key=True)
     cantidad_consumo = models.IntegerField()
     #llaves foraneas
     proceso = models.ForeignKey(Proceso ,on_delete=models.PROTECT)
@@ -156,7 +165,7 @@ class Herramienta (models.Model):
 class Uso_herramienta (models.Model):
     id= models.AutoField('ID', primary_key=True)
     #llaves foraneas
-    material = models.ForeignKey(Material ,on_delete=models.PROTECT)
+    herramienta = models.ForeignKey(Herramienta ,on_delete=models.PROTECT)
     proceso = models.ForeignKey(Proceso ,on_delete=models.PROTECT)  
 
 class Compone_A(models.Model):

@@ -7,68 +7,49 @@
 			<h3 id="modalLabel">Bienvenido</h3>
 		</div>
 
-			<form>
-
-				<p class="label label-info">Obligatorios</p>
-				
-	
-
+			<form method="POST" action="">
+			{% csrf_token %}
+				<p class="label label-info"></p>
 				<div class="controls controls-row">
-					
-					<input type="text" class="span4" placeholder="Nombre" id="inputinfo">
-					<input type="text" class="span4" placeholder="Apellido" id="inputinfo">
-					
-
-
-				</div>
-				
-				<div class="controls controls-row">
-					
-					<input type="text" class="span8" placeholder="Dirección">
-					
-
-
+					<input type="text" class="span4" placeholder="Nombre" name="nombre"pattern="^[A-Za-z0-9 ]{1,255}$" required/>
+					<input type="text" class="span4" placeholder="Apellido" name="apellido"pattern="^[A-Za-z0-9 ]{1,255}$" required/>
 				</div>
 				<div class="controls controls-row">
-					
-					
-					<input type="text" class="span8" placeholder="Teléfono">
-					
-
-
+					<input type="text" class="span8" name="nombre_usuario" placeholder="Nombre de usuario"pattern="^[A-Za-z0-9 ]{1,255}$" required/>
 				</div>
 				<div class="controls controls-row">
-					
-					
-					<input type="text" class="span8" placeholder="Celular">
-
-
+					<input type="text" class="span8" name="password" placeholder="Contraseña"pattern="^[A-Za-z0-9 ]{1,255}$" required/>
 				</div>
-
+				<div class="controls controls-row">
+					<input type="text" class="span8" name="direccion" placeholder="Dirección"pattern="^[A-Za-z0-9 ]{1,255}$" required/>
+				</div>
+				<div class="controls controls-row">
+					<input type="text" class="span8" name="telefono" placeholder="Teléfono"pattern="^[0-9]{1,255}$" required/>
+				</div>
+				<div class="controls controls-row">
+					<input type="text" class="span8" name="celular" placeholder="Celular"pattern="^[0-9]{1,255}$" required/>
+				</div>
+				<div class="controls controls-row">
+					<input type="text" class="span8" name="rut" placeholder="Rut"pattern="^[A-Za-z0-9 ]{1,255}$" required/>
+				</div>
 				<div class="controls control-group info">
-					<input type="text" class="span8" placeholder="Nombre usuario" id="inputinfo">
-					<input type="text" class="span8" placeholder="Correo">
-					<input type="text" class="span8" placeholder="Confirmar correo">
-					
-
+					<input type="text" class="span8"name="username" placeholder="Nombre usuario" id="inputinfo"pattern="^[A-Za-z0-9 ]{1,255}$" required/>
+					<input type="text" class="span8" name="correo" placeholder="Correo"pattern="^[A-Za-z0-9 @]{1,255}$" required/>
 				</div>			
 
 				<p class="help-block">Si usted quiere cotizar productos regístrese como Usuario.</p>
 				<p class="help-block">Si usted quiere ingresar sus productos a la página regístrese como Proveedor.</p>
 				
 				<label class="radio">
-				<input type="radio" name="inputWalls" id="inputWalls" value="Usuario" checked>
+				<input type="radio" name="usuario" id="inputWalls" value="Usuario">
 			    Usuario </label>
 			    <label class="radio">
-				<input type="radio" name="inputWalls" id="inputWalls" value="Administrador">
+				<input type="radio" name="proveedor" id="inputWalls" value="Administrador" >
 			   Proveedor</label>
 
-
-          <button type="submit" class="btn btn-primary">Enviar</button>
-          <button type="button" class="btn">Cancelar</button>
-
-
-				
+			<hr /> 
+					 <input type="submit" name="submit" value="Terminar" class="btn btn-success btn-medium" />
+					 <input type="submit" name="submit" value="Cancelar" class="btn btn btn-medium" />
 			</form>
 			
 			
