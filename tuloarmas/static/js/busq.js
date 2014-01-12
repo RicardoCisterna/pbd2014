@@ -1,7 +1,7 @@
 /*! jQuery v1.10.2 | (c) 2005, 2013 jQuery Foundation, Inc. | jquery.org/license
 //@ sourceMappingURL=jquery-1.10.2.min.map
 */
-(funjQuery.fn.filterByText = function(textbox, selectSingleMatch) {
+jQuery.fn.filterByText = function(textbox, selectSingleMatch) {
   return this.each(function() {
     var select = this;
     var options = [];
