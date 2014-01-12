@@ -1,37 +1,38 @@
 {% extends 'template2.html' %}
 {% block TITLE %}TuLoArmas - Crear tutorial{% endblock %}
 {% block contenido %}
+
 <div class="hero-unit">
          
     <h1>Crear Tutorial</h1>
     <div class="contenido">
-    					<form method="POST" action="">
-    					{% csrf_token %}
-    					
-    					
-        				<div class="row" style="overflow:hidden;">
-            				<div class="span6">
-                				<div>
-                		{% ifequal id_tutorial "" %}
-    		                <label class="cuadrilla-left">Nombre Tutorial</label>
+                                            <form method="POST" action="">
+                                            {% csrf_token %}
+                                            
+                                            
+                                        <div class="row" style="overflow:hidden;">
+                                            <div class="span6">
+                                                <div>
+                                {% ifequal id_tutorial "" %}
+                                    <label class="cuadrilla-left">Nombre Tutorial</label>
                          <input class="text" type="text" id="mes-tabla" name="nombreTuto" pattern="^[A-Za-z0-9 ]{1,255}$" required/>
                          <label class="cuadrilla-left">Descripción del tutorial</label>
-                		    <input class="text" type="text" id="desc" name="desc" pattern="^[A-Za-z0-9 ]{1,255}$" required/>
-    					   {% else %}
-    					       <input type="hidden" name="id-tutorial" value="{{id_tutorial}}" />
+                                    <input class="text" type="text" id="desc" name="desc" pattern="^[A-Za-z0-9 ]{1,255}$" required/>
+                                               {% else %}
+                                                   <input type="hidden" name="id-tutorial" value="{{id_tutorial}}" />
                          <label class="cuadrilla-left">Nombre Tutorial</label>
                          <input class="text" type="text" value="{{nombre_tuto}}" disabled/>
                          <label class="cuadrilla-left">Numero del proceso</label>
-                		    <input class="text" type="text" value="{{num_proceso}}" disabled/>    					
-    							
+                                    <input class="text" type="text" value="{{num_proceso}}" disabled/>                                            
+                                                            
                     
                      {% endifequal %}
                     <br /><hr />
                     <label>Lista de materiales:</label>
                     <input type="text" placeholder="Buscar..." id="filtrar-materiales" />
                     <select style="height:187px" id="lista-materiales" multiple="multiple">
-                    {% for producto in productos %}
-                        <option value="{{producto.id}}-0" id="producto-{{producto.id}}">{{producto.nombre}}</option>
+                    {% for material in materiales %}
+                        <option value="{{material.id}}-0" id="material-{{material.id}}">{{material.nombre_material}}</option>
                     {% endfor %}
                     </select>
                     
@@ -44,10 +45,10 @@
                     </select>
                     <label class="cuadrilla-left">Descripción de armado:</label>
                     <div  class="controls controls-row">
-          					<div class="controls">
-            				<textarea class="span10" rows="7" name="descripcion" pattern="^[A-Za-z0-9 ]{10,255}$" required/></textarea>
-          					</div>
-        				</div>
+                                                  <div class="controls">
+                                            <textarea class="span10" rows="7" name="descripcion" pattern="^[A-Za-z0-9 ]{10,255}$" required/></textarea>
+                                                  </div>
+                                        </div>
                     <label class="cuadrilla-left">HH necesarias</label>
                     <input type="text" name="numeroHH" value="0" pattern="^[0-9]{1,255}$" required/>
                     <br />
@@ -57,10 +58,10 @@
             </div><!-- .span4 -->
             <div class="span6">
                 <div class="spacer20"></div><div class="spacer10"></div>
-							<label class="cuadrilla-left">Material resultante</label>
+                                                        <label class="cuadrilla-left">Material resultante</label>
                     <input type="text" id="mes-tabla" name="materialResultante" pattern="^[A-Za-z0-9 ]{1,255}$" required/>
                     
-							<label class="cuadrilla-left">Video demostrativo (Optativo)</label>
+                                                        <label class="cuadrilla-left">Video demostrativo (Optativo)</label>
                     <input type="text" id="video" name="video" placeholder="url del video">
                     <hr>
                 <label class="cuadrilla-left">Lista de materiales agregados</label>
@@ -90,8 +91,15 @@
                 
                 
                 
-                <hr />
-                <input type="file" class="btn" name="imagen" id="imagen" data-classInput="input-small" required />
+                <hr />         
+                                                                <label class="cuadrilla-left">Imagen del proceso</label>
+                         <input type="text" class="span6" id="imagen_proceso" name="imagen_proceso" required>
+                {% ifequal id_tutorial "" %}
+                                                                <label class="cuadrilla-left">Imagen del tutorial</label>
+                                                <input type="text" class="span6" id="imagen_tutorial" name="imagen_tutorial" required>
+                                               {% else %}
+                                                   
+                     {% endifequal %}
                 
                 <input type="hidden" name="listaJO"  id="listaJO"  value ="" />
                 <input type="hidden" name="listaSu"  id="listaSu"  value ="" />
@@ -99,16 +107,16 @@
                 <input type="hidden" name="facturaA" id="facturaA" value ="" />
                 <input type="hidden" name="subarea"  id="subarea"  value ="" />
                 <hr>
-					 <input type="submit" name="submit" value="Siguiente" class="btn btn-primary btn-medium" />
-					 <input type="hidden" value="si" name="seguir">
-					 <input type="submit" onclick="cambie_seguir()" name="submit" value="Terminar" class="btn btn-success btn-medium" />
-					 <input type="submit" name="submit" value="Cancelar" class="btn btn btn-medium" />
+                                         <input type="submit" name="submit" value="Siguiente" class="btn btn-primary btn-medium" />
+                                         <input type="hidden" value="si" name="seguir">
+                                         <input type="submit" onclick="cambie_seguir()" name="submit" value="Terminar" class="btn btn-success btn-medium" />
+                                         <input type="submit" name="submit" value="Cancelar" class="btn btn btn-medium" />
             </div>
         </div><!-- .row -->
     </form>
 
     </div><!-- .content -->
-				            
+                                            
             
             <p>Sistema web implementado para el curso Proyecto de Base de Datos</p>
             
@@ -118,20 +126,19 @@
 
 
 <script type="text/javascript" >
-
 $(function(){
-	$("#lista-herramientas").filterByText($('#filtrar-herramientas'),true);
-	$("#lista-materiales").filterByText($('#filtrar-materiales'),true);
-})
+        $("#lista-herramientas").filterByText($('#filtrar-herramientas'),true);
+        $("#lista-materiales").filterByText($('#filtrar-materiales'),true);
+});
 
 $(document).ready(function() {
-		$('#mover-btn').on('click', function() {
+                $('#mover-btn').on('click', function() {
         var lista_materiales = $('#lista-materiales').val();
         
         for (var i = 0; i < lista_materiales.length; i++) {
             var id = lista_materiales[i].split('-')[0];
             
-            $('#producto-' + id).appendTo('#lista').append('<p> - cant <span>1</span></p>');
+            $('#material-' + id).appendTo('#lista').append('<p> - cant <span>1</span></p>');
         }
     });
     $('#mover2-btn').on('click', function() {
@@ -149,7 +156,7 @@ $(document).ready(function() {
         for (var i = 0; i < lista.length; i++) {
             var id = lista[i].split('-')[0];
             
-            $('#producto-' + id).appendTo('#lista-materiales').find('p').remove();
+            $('#material-' + id).appendTo('#lista-materiales').find('p').remove();
         }
     });
     
@@ -170,7 +177,7 @@ $(document).ready(function() {
         for (var i = 0; i < lista_materiales.length; i++) {
             var id = lista_materiales[i].split('-')[0];
             
-            var $option = $('#producto-' + id);
+            var $option = $('#material-' + id);
             var $span = $option.find('span');
             
             var horas = (tipo == 'mas')? parseFloat($span.html()) + 1 : parseFloat($span.html()) - 1;
@@ -209,16 +216,16 @@ $(document).ready(function() {
         }
     });
     /*$("#filtrar-materiales").on("keyup",function(){
-		$("#lista-materiales option").each(function(){
-			if($(this).html().toUpperCase().indexOf($("#filtrar-materiales").val().toUpperCase() )==-1	){
-				$(this).hide();
-				//alert($(this).html()+"->ocultar");
-			}
-			else{
-				$(this).show();			
-				//alert($(this).html()+"->mostrar");
-			}
-		}); 
+                $("#lista-materiales option").each(function(){
+                        if($(this).html().toUpperCase().indexOf($("#filtrar-materiales").val().toUpperCase() )==-1        ){
+                                $(this).hide();
+                                //alert($(this).html()+"->ocultar");
+                        }
+                        else{
+                                $(this).show();                        
+                                //alert($(this).html()+"->mostrar");
+                        }
+                }); 
     });*/
     $('input[name=submit]:submit').on('click', function() {
         $("option").each(function(){
@@ -230,9 +237,8 @@ $(document).ready(function() {
     
 });
 function cambie_seguir(){
-	$("input[name=seguir]").val("no");
+        $("input[name=seguir]").val("no");
 }
 </script>
 
 {% endblock %}
-      
