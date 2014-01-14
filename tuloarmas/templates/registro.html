@@ -6,19 +6,46 @@
 	<div class="row-fluid">	
 			<h3 id="modalLabel">Bienvenido</h3>
 		</div>
-
+			{%if rutInvalido %}
+				<div class="alert alert-block">
+  					<button type="button" class="close" data-dismiss="alert">&times;</button>
+  					<h4>Error!</h4>
+  						Debe ingresar un rut válido con el siguiente formato: XXXXXXXX-Y.
+				</div>
+			{% endif %}
+			{%if rutRegistrado %}
+				<div class="alert alert-block">
+  					<button type="button" class="close" data-dismiss="alert">&times;</button>
+  					<h4>Error!</h4>
+  						El rut ya está registrado
+				</div>
+			{% endif %}
+			{%if userRegistrado %}
+				<div class="alert alert-block">
+  					<button type="button" class="close" data-dismiss="alert">&times;</button>
+  					<h4>Error!</h4>
+  						El nombre de usuario ya está registrado
+				</div>
+			{% endif %}
+			{%if complete %}
+				<div class="alert alert-success">
+  					<button type="button" class="close" data-dismiss="alert">&times;</button>
+  					<h4>Correcto</h4>
+  						Usuario registrado con éxito
+				</div>
+			{% endif %}
 			<form method="POST" action="">
 			{% csrf_token %}
 				<p class="label label-info"></p>
 				<div class="controls controls-row">
-					<input type="text" class="span4" placeholder="Nombre" name="nombre"pattern="^[A-Za-z0-9 ]{1,255}$" required/>
-					<input type="text" class="span4" placeholder="Apellido" name="apellido"pattern="^[A-Za-z0-9 ]{1,255}$" required/>
+					<input type="text" class="span4" placeholder="Nombre" name="nombre"pattern="^[A-Za-z0-9 ñ]{1,255}$" required/>
+					<input type="text" class="span4" placeholder="Apellido" name="apellido"pattern="^[A-Za-z0-9 ñ]{1,255}$" required/>
 				</div>
 				<div class="controls controls-row">
-					<input type="text" class="span8" name="username" placeholder="Nombre de usuario"pattern="^[A-Za-z0-9 ]{1,255}$" required/>
+					<input type="text" class="span8" name="username" placeholder="Nombre de usuario"pattern="^[A-Za-z0-9 ñ]{1,255}$" required/>
 				</div>
 				<div class="controls controls-row">
-					<input type="text" class="span8" name="password" placeholder="Contraseña"pattern="^[A-Za-z0-9 ]{1,255}$" required/>
+					<input type="password" class="span8" name="password" placeholder="Contraseña"pattern="^[A-Za-z0-9 ]{1,255}$" required/>
 				</div>
 				<div class="controls controls-row">
 					<input type="text" class="span8" name="direccion" placeholder="Dirección"pattern="^[A-Za-z0-9 ]{1,255}$" required/>
@@ -30,10 +57,10 @@
 					<input type="text" class="span8" name="celular" placeholder="Celular"pattern="^[0-9]{1,255}$" required/>
 				</div>
 				<div class="controls controls-row">
-					<input type="text" class="span8" name="rut" placeholder="Rut"pattern="^[A-Za-z0-9 ]{1,255}$" required/>
+					<input type="text" class="span8" name="rut" placeholder="Rut"pattern="^[0-9 k -]{1,255}$" required/>
 				</div>
-				<div class="controls control-group info">
-					<input type="text" class="span8" name="correo" placeholder="Correo"pattern="^[A-Za-z0-9 @]{1,255}$" required/>
+				<div class="controls control-row">
+					<input type="text" class="span8" name="correo" placeholder="Correo"pattern="^[A-Za-z0-9 @._ -]{1,255}$" required/>
 				</div>			
 
 				<p class="help-block">Si usted quiere cotizar productos regístrese como Usuario.</p>

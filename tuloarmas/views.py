@@ -136,8 +136,41 @@ def registro(request):
             username=request.POST['username']
             correo=request.POST['correo']
             rut=request.POST['rut']
+            if request.POST['rut']:
+                numRut = request.POST['rut'][:-2]
+                codVer = request.POST['rut'][-1:]
+                if esRut(request.POST['rut']) and digito_verificador(numRut) == codVer:
+                    rut = request.POST['rut']
+                else:
+                    rutInvalido = True
+                    return render_to_response('registro.html', {'rutInvalido':rutInvalido},context_instance = RequestContext(request))
+                user1= Usuario.objects.all()
+                for i in user1:
+                    if i.rut_usuario == rut:
+                        rutRegistrado=True
+                        return render_to_response('registro.html',{'rutRegistrado':rutRegistrado},context_instance=RequestContext(request))
+            if request.POST['username']:
+                user2= User.objects.all()
+                for i in user2:
+                    if i.username == username:
+                        userRegistrado=True
+                        return render_to_response('registro.html',{'userRegistrado':userRegistrado},context_instance=RequestContext(request))
             tipo_usuario='proveedor'
+            s = User()  
+            s.username=username
+            s.first_name=nombre
+            s.last_name=apellido
+            s.email = correo
+            s.password = password
+            s.is_staff ='false'
+            s.is_active ='yes'
+            s.is_superuser ='no'
+            s.last_login = '2013-12-25'
+            s.date_joined = '2013-12-25'
+            s.set_password(password)
+            s.save()
             u = Usuario()
+            u.id=s.id
             u.tipo_usuario=tipo_usuario
             u.nombre_usuario=nombre
             u.apellido_usuario=apellido
@@ -150,22 +183,11 @@ def registro(request):
             u.estado_usuario='true'
             u.fecha_ingreso='2013-12-25'
             u.save()
-            s = User()
-            s.id=u.id
-            s.username=username
-            s.first_name=nombre
-            s.last_name=apellido
-            s.email = correo
-            s.password = password
-            s.is_staff ='false'
-            s.is_active ='yes'
-            s.is_superuser ='no'
-            s.last_login = '2013-12-25'
-            s.date_joined = '2013-12-25'
-            s.save()
+            complete = True
             return render_to_response(
                 'registro.html',
                 {
+                	  'complete':complete,
                     'categoria':categoria,
                     'user':request.user
                 },
@@ -362,7 +384,7 @@ def crear_tutorial(request):
         #print t
         p=Proceso()
         p.nombre_proceso = "adsasdasdasdasd"
-        p.descripcion_procesos = descripcion
+        p.descripcion_proceso = descripcion
         p.imagen_proceso=imagen_proceso
         p.hh = HH 
 

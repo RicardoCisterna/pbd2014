@@ -22,7 +22,7 @@
       <!-- Carousel items -->
       <div class="carousel-inner">
       {% for proc in procesos %}
-        <div class="{% ifequal proc.numero_proceso 1 %}active {% endifequal %}item"><img  src={{proc.imagen_proceso}} alt="banner{{proc.numero_proceso}}" />Proceso {{proc.numero_proceso}}:{{proc.descripcion_procesos}}</div>
+        <div class="{% ifequal proc.numero_proceso 1 %}active {% endifequal %}item"><img  src={{proc.imagen_proceso}} alt="banner{{proc.numero_proceso}}" />Proceso {{proc.numero_proceso}}:{{proc.descripcion_proceso}}</div>
       {% endfor %}
       </div>
       <!-- Carousel nav -->

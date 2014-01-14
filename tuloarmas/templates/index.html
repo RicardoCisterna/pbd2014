@@ -16,12 +16,14 @@
           
             {% if materiales %}
             {% for material in materiales|slice:":3" %}
-						<div class="span4">
+            {% ifequal material.tipo_material "p" %}
+					 	<div class="span4">
               		<h2>{{material.nombre_material}}</h2>
               		<img src={{material.imagen_material}} width="200px" alt="" />
               <p>{{material.descripcion_material}}</p>
               <p><a class="btn" href="/detalle_producto/{{material.id}}">Ver detalles &raquo;</a></p>
               </div><!--/span-->
+              {% endifequal %}
               {% endfor %}
               {% else %}
 				<p>No se encontraron materiales</p> 

@@ -5,7 +5,7 @@
 <div class="hero-unit">
         <h4>Ingrese los datos del material que desea ingresar</h4>
         <div class="contenido">
-        <form class="form-horizontal" method="POST" action=""">
+        <form class="form-horizontal" method="POST" action="">
         {% csrf_token %}
           <p><div class="control-group">
             <label class="control-label" for="inputName">Nombre</label>
@@ -23,7 +23,7 @@
 			<p><div class="control-group">
             <label class="control-label" for="inputName">Tipo material</label>
             <div class="controls">
-              <input type="text" class="span6" id="tipo_material" name="tipo_material" pattern="^[pic]{1,255}$" required/>
+              <input type="text" class="span6" id="tipo_material" name="tipo_material" pattern="^[pi]{1}$" placeholder="p=productivo, i=insumos" required/>
             </div>
           </div>
 			<p><div class="control-group">
@@ -41,7 +41,7 @@
           <div class="control-group">
             <label class="control-label" for="inputCategoria">Url imagen</label>
             <div class="controls">
-              <input type="text" class="span6" id="imagen_material" name="imagen_material" required>
+              <input type="text" class="span6" id="imagen_material" name="imagen_material" placeholder="http://www.imagen-ejemplo.cl/imagen.jpg "required>
             </div>
           </div>     
 			<p><div class="control-group">
